@@ -1,5 +1,6 @@
 import { Arbitrary, assert, func, property } from "fast-check"
 import { Of } from "tshkt"
+import { isDeepStrictEqual as eq } from "util"
 import { IsFunctor } from "."
 
 export default function laws<F extends IsFunctor<F>, A>(
@@ -10,7 +11,7 @@ export default function laws<F extends IsFunctor<F>, A>(
     test("x.map(id) === x", () => {
       assert(
         property(
-          arbFA, fa => expect(fa.map(x => x)).toEqual(fa).pass === true
+          arbFA, fa => expect(eq(fa.map(x => x), fa)).toBe(true)
         )
       )
     })
@@ -20,7 +21,7 @@ export default function laws<F extends IsFunctor<F>, A>(
       assert(
         property(
           arbFA, arbF, arbF, (fa, f, g) =>
-            expect(fa.map(a => g(f(a)))).toEqual(fa.map(f).map(g))
+            expect(eq(fa.map(a => g(f(a))), fa.map(f).map(g))).toBe(true)
         )
       )
     })
