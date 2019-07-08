@@ -9,7 +9,7 @@ import { Functor } from "../../control/functor"
 
 export class Identity<A> implements Functor<IdentityF, A> {
   [Generic.Type]!: Generic1<IdentityF, A>
-  constructor(private value: A) {}
+  constructor (private value: A) {}
 
   map <B>(f: (a: A) => B): Identity<B> {
     return new Identity(f(this.value))
