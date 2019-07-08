@@ -12,36 +12,21 @@ import {
   compose,
   pipe
 } from "../../control/semigroupoid"
-import laws from "../../control/semigroupoid/laws"
 // for side effects
-//import "."
+import "."
 import { Fun } from "."
 
 function arbFun<A, B>(arbB: Arbitrary<B>): Arbitrary<Fun<A, B>> {
-  return func<[A], B>(arbB).map(_ => new Fun(_))
+  return func<[A], B>(arbB) as Arbitrary<Fun<A, B>>
 }
-
-// While this typechecks niceley,
-// we cannot use `isDeepStrictEqual` to compare functions.
-// Therefore custom properties are needed to test functions.
-// describe("Data.Function", () => {
-//   laws(
-//     arbFun<string, boolean>(boolean()),
-//     arbFun<number, string>(string()),
-//     arbFun<unknown, number>(integer())
-//   )
-// })
 
 describe("Data.Function", () => {
   describe("Semigroupoid laws", () => {
 
     test("f.compose(g).compose(h) === f.compose(g.compose(h))", () => {
-      const arbF =
-        func<[boolean], string>(string()).map(_ => new Fun(_))
-      const arbG =
-        func<[number], boolean>(boolean()).map(_ => new Fun(_))
-      const arbH =
-        func<[unknown], number>(integer()).map(_ => new Fun(_))
+      const arbF = arbFun<boolean, string>(string())
+      const arbG = arbFun<number, boolean>(boolean())
+      const arbH = arbFun<unknown, number>(integer())
 
       assert(
         property(
@@ -52,8 +37,8 @@ describe("Data.Function", () => {
             start
           ) =>
             expect(
-              compose(f, g, h).apply(start) ===
-                pipe(h, g, f).apply(start)
+              compose(f, g, h)(start) ===
+                pipe(h, g, f)(start)
             ).toBe(true)
         )
       )

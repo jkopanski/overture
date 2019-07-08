@@ -9,5 +9,6 @@
     // strictNullChecks
     // strictFunctionTypes
     // strictPropertyInitialization
+    "resolveJsonModule": true
   }
 }
