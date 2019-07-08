@@ -6,7 +6,7 @@
   "module": "dist/index.es5.js",
   "typings": "dist/index.d.ts",
   "scripts": {
-    "build": "rollup -c",
+      "build": "rollup -c rollup.config.ts",
     "lint": "standard 'src/**/*.ts'",
     "start": "rollup -c rollup.config.ts -w",
     "test": "echo \"Error: no test specified\" && exit 1"

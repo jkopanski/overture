@@ -1,5 +1,4 @@
 import { Arbitrary, anything } from "fast-check"
-import test from "ava"
 import laws from "../../control/functor/laws"
 import { Identity } from "."
 
