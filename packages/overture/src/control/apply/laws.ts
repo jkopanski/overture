@@ -1,4 +1,4 @@
-import { Arbitrary, assert, func, property } from "fast-check"
+import { Arbitrary, assert, property } from "fast-check"
 import { Of } from "tshkt"
 import { isDeepStrictEqual as eq } from "util"
 import { IsApply } from "."
