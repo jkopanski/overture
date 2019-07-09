@@ -3,7 +3,7 @@ import {
   TypeFamily,
   Kind1
 } from "tshkt"
-import { IsFunctor } from "./control/functor";
+//import { IsFunctor } from "./control/functor";
 import { Identity } from "./data/identity";
 
 export interface Functor<F, A> {

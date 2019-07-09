@@ -25,6 +25,13 @@ interface FunF extends TypeFamily<Kind2> {
   (): Fun<this[0], this[1]>
 }
 
+export function fun <A, B>(g: (a: A) => B): Fun<A, B> {
+  return g as Fun<A, B>
+}
+
+export type Fun2<A, B, C> = Fun<A, Fun<B, C>>
+export type Fun3<A, B, C, D> = Fun<A, Fun<B, Fun<C, D>>>
+
 declare global {
   interface Function {
     compose: <A, B, C>(

@@ -16,7 +16,7 @@ import {
 import "."
 import { Fun } from "."
 
-function arbFun<A, B>(arbB: Arbitrary<B>): Arbitrary<Fun<A, B>> {
+export function arbFun<A, B>(arbB: Arbitrary<B>): Arbitrary<Fun<A, B>> {
   return func<[A], B>(arbB) as Arbitrary<Fun<A, B>>
 }
 
