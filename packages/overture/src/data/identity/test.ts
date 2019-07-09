@@ -6,6 +6,7 @@ import {
 } from "fast-check"
 import functor from "../../control/functor/laws"
 import apply from "../../control/apply/laws"
+import applicative from "../../control/applicative/laws"
 import { Identity } from "."
 import { arbFun } from "../../data/function/test"
 
@@ -19,5 +20,12 @@ describe("Data.Identity", () => {
     arbIdentity(arbFun<number, string>(string())),
     arbIdentity(arbFun<unknown, number>(integer())),
     arbIdentity(anything())
+  )
+  applicative(
+    Identity,
+    arbIdentity(anything()),
+    arbIdentity(arbFun<number, string>(string())),
+    arbFun<number, string>(string()),
+    integer()
   )
 })
