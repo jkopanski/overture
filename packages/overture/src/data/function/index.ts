@@ -27,6 +27,10 @@ interface FunF extends TypeFamily<Kind2> {
 
 export const id = <A>(a: A) => a
 
+export function constant <A>(a: A) {
+  return ((_: any) => a) as Fun<any, A>
+}
+
 export function fun <A, B>(g: (a: A) => B): Fun<A, B> {
   return g as Fun<A, B>
 }
