@@ -8,9 +8,10 @@ import { Fun } from "../../data/function"
 import { Functor } from "../../control/functor"
 import { Apply } from "../../control/apply"
 import { Applicative } from "../../control/applicative"
+import { Bind } from "../../control/bind"
 
 export class Identity<A>
-  implements Functor<IdentityF, A>, Apply<IdentityF, A>, Applicative<IdentityF, A> {
+  implements Functor<IdentityF, A>, Apply<IdentityF, A>, Applicative<IdentityF, A>, Bind<IdentityF, A> {
     [Generic.Type]!: Generic1<IdentityF, A>
     ["constructor"]: typeof Identity
 
@@ -26,6 +27,10 @@ export class Identity<A>
 
     ap <B>(ff: Identity<Fun<A, B>>): Identity<B> {
       return new Identity(ff.value(this.value))
+    }
+
+    bind <B>(f: Fun<A, Identity<B>>): Identity<B> {
+      return f(this.value)
     }
 }
 

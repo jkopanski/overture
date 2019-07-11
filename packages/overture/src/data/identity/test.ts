@@ -7,6 +7,7 @@ import {
 import functor from "../../control/functor/laws"
 import apply from "../../control/apply/laws"
 import applicative from "../../control/applicative/laws"
+import bind from "../../control/bind/laws"
 import { Identity } from "."
 import { arbFun } from "../../data/function/test"
 
@@ -27,5 +28,10 @@ describe("Data.Identity", () => {
     arbIdentity(arbFun<number, string>(string())),
     arbFun<number, string>(string()),
     integer()
+  )
+  bind(
+    arbIdentity(anything()),
+    arbFun<number, Identity<string>>(arbIdentity(string())),
+    arbFun<string, Identity<number>>(arbIdentity(integer()))
   )
 })
