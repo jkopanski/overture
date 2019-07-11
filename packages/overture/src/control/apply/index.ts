@@ -6,6 +6,11 @@ import {
 import { Functor, voidRight } from "../../data/functor"
 import { Fun, Fun2, constant, id } from "../../data/function"
 
+/**
+ * Apply is an interface supporting `apply` operation,
+ * which is used to apply a function in the context
+ * to an orgument in a context
+ */
 export interface Apply<F, A> extends Functor<F, A> {
   apply <B>(this: Of<F, A>, f: Of<F, Fun<A, B>>): Of<F, B>
 }
@@ -23,6 +28,12 @@ export function liftA <F extends IsApply<F>, A, B>(
   ) as Fun<Of<F, A>, Of<F, B>>
 }
 
+/**
+ * Lift a function af 2 arguments to a function which accepts
+ * thase orguments in a context.
+ *
+ * @param f Function to lift in context `F`.
+ */
 export function liftA2 <F extends IsApply<F>, A, B, C>(
   f: Fun2<A, B, C>
 ): Fun2<Of<F, A>, Of<F, B>, Of<F, C>> {
