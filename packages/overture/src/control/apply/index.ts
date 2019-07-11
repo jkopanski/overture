@@ -3,7 +3,7 @@ import {
   Of,
   TypeFamily
 } from "tshkt"
-import { Functor, fconst } from "../../data/functor"
+import { Functor, voidRight } from "../../data/functor"
 import { Fun, Fun2, constant, id } from "../../data/function"
 
 export interface Apply<F, A> extends Functor<F, A> {
@@ -42,7 +42,7 @@ export function apSecond <F extends IsApply<F>, A, B>(
   fa: Of<F, A>,
   fb: Of<F, B>
 ): Of<F, B> {
-  return fb.ap(fconst(id as Fun<B, B>, fb))
+  return fb.ap(voidRight(id as Fun<B, B>, fa))
 }
 
 /**
