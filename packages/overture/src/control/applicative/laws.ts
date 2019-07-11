@@ -16,7 +16,7 @@ export default function laws<F extends IsApplicative<F>, A, B, V>(
       assert(
         property(
           arbV, v => expect(eq(
-            v.ap(A.pure(fun(id))),
+            v.apply(A.pure(fun(id))),
             v
           )).toBe(true)
         )
@@ -27,7 +27,7 @@ export default function laws<F extends IsApplicative<F>, A, B, V>(
       assert(
         property(
           arbF, arbA, (f, a) => expect(eq(
-            A.pure(a).ap(A.pure(f)),
+            A.pure(a).apply(A.pure(f)),
             A.pure(f(a))
           )).toBe(true)
         )
@@ -38,8 +38,8 @@ export default function laws<F extends IsApplicative<F>, A, B, V>(
       assert(
         property(
           arbU, arbA, (u, a) => expect(eq(
-            A.pure(a).ap(u),
-            u.ap(A.pure(fun(g => g(a))))
+            A.pure(a).apply(u),
+            u.apply(A.pure(fun(g => g(a))))
           )).toBe(true)
         )
       )

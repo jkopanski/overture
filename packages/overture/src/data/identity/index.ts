@@ -25,7 +25,7 @@ export class Identity<A>
       return new Identity(f(this.value))
     }
 
-    ap <B>(ff: Identity<Fun<A, B>>): Identity<B> {
+    apply <B>(ff: Identity<Fun<A, B>>): Identity<B> {
       return new Identity(ff.value(this.value))
     }
 

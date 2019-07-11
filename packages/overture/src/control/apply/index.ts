@@ -7,7 +7,7 @@ import { Functor, voidRight } from "../../data/functor"
 import { Fun, Fun2, constant, id } from "../../data/function"
 
 export interface Apply<F, A> extends Functor<F, A> {
-  ap <B>(this: Of<F, A>, f: Of<F, Fun<A, B>>): Of<F, B>
+  apply <B>(this: Of<F, A>, f: Of<F, Fun<A, B>>): Of<F, B>
 }
 
 export interface IsApply<F> extends TypeFamily<Kind1> {
@@ -28,7 +28,7 @@ export function liftA2 <F extends IsApply<F>, A, B, C>(
 ): Fun2<Of<F, A>, Of<F, B>, Of<F, C>> {
   return (
     (fa: Of<F, A>) =>
-      (fb: Of<F, B>) => fb.ap(fa.map(f))
+      (fb: Of<F, B>) => fb.apply(fa.map(f))
   ) as Fun2<Of<F, A>, Of<F, B>, Of<F, C>>
 }
 
@@ -42,7 +42,7 @@ export function apSecond <F extends IsApply<F>, A, B>(
   fa: Of<F, A>,
   fb: Of<F, B>
 ): Of<F, B> {
-  return fb.ap(voidRight(id as Fun<B, B>, fa))
+  return fb.apply(voidRight(id as Fun<B, B>, fa))
 }
 
 /**
@@ -55,5 +55,5 @@ export function apFirst <F extends IsApply<F>, A, B>(
   fa: Of<F, A>,
   fb: Of<F, B>
 ): Of<F, A> {
-  return fb.ap(fa.map(constant as Fun2<A, B, A>))
+  return fb.apply(fa.map(constant as Fun2<A, B, A>))
 }

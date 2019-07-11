@@ -14,8 +14,8 @@ export default function laws<F extends IsApply<F>, W, V, U>(
       assert(
         property(
           arbU, arbV, arbW, (u, v, w) => expect(eq(
-            w.ap(v.ap(u.map(fun((f => fun(g => f.compose(g))))))),
-            w.ap(v).ap(u)
+            w.apply(v.apply(u.map(fun((f => fun(g => f.compose(g))))))),
+            w.apply(v).apply(u)
           )).toBe(true)
         )
       )
