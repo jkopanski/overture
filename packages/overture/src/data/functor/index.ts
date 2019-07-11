@@ -3,7 +3,7 @@ import {
   Of,
   TypeFamily
 } from "tshkt"
-import { Fun, constant } from "../../data/function"
+import { Fun, constant } from "../function"
 
 export interface Functor<F, A> {
   map <B>(this: Of<F, A>, f: Fun<A, B>): Of<F, B>

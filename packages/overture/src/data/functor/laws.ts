@@ -2,8 +2,8 @@ import { Arbitrary, assert, func, property } from "fast-check"
 import { Of } from "tshkt"
 import { isDeepStrictEqual as eq } from "util"
 import { IsFunctor } from "."
-import { fun } from "../../data/function"
-import { arbFun } from "../../data/function/test"
+import { fun } from "../function"
+import { arbFun } from "../function/test"
 
 export default function laws<F extends IsFunctor<F>, A>(
   arbFA: Arbitrary<Of<F, A>>,

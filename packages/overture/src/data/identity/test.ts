@@ -4,13 +4,13 @@ import {
   string,
   integer
 } from "fast-check"
-import functor from "../../control/functor/laws"
+import functor from "../functor/laws"
 import apply from "../../control/apply/laws"
 import applicative from "../../control/applicative/laws"
 import bind from "../../control/bind/laws"
 import monad from "../../control/monad/laws"
 import { Identity } from "."
-import { arbFun } from "../../data/function/test"
+import { arbFun } from "../function/test"
 
 function arbIdentity <A>(arbA: Arbitrary<A>): Arbitrary<Identity<A>> {
   return arbA.map(_ => new Identity(_))

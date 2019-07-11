@@ -3,7 +3,7 @@ import {
   Of,
   TypeFamily
 } from "tshkt"
-import { Functor, fconst } from "../functor"
+import { Functor, fconst } from "../../data/functor"
 import { Fun, Fun2, constant, id } from "../../data/function"
 
 export interface Apply<F, A> extends Functor<F, A> {

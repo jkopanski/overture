@@ -4,8 +4,8 @@ import {
   Kind1,
   TypeFamily
 } from "tshkt"
-import { Fun } from "../../data/function"
-import { Functor } from "../../control/functor"
+import { Fun } from "../function"
+import { Functor } from "../functor"
 import { Apply } from "../../control/apply"
 import { Applicative } from "../../control/applicative"
 import { Bind } from "../../control/bind"
