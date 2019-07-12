@@ -6,7 +6,7 @@ import {
 import { Alt } from "../alt"
 
 export interface Empty<F> {
-  empty <A>(): Of<F, A>
+  empty (): Of<F, any>
 }
 
 /**
