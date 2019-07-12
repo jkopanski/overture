@@ -5,8 +5,8 @@ import {
 import { Applicative } from "../applicative"
 import { Bind } from "../bind"
 
-export interface Manad<F, A> extends Applicative<F, A>, Bind<F, A> {}
+export interface Monad<F, A> extends Applicative<F, A>, Bind<F, A> {}
 
 export interface IsMonad<F> extends TypeFamily<Kind1> {
-  (): Bind<F, this[0]>
+  (): Monad<F, this[0]>
 }
