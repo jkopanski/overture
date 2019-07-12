@@ -3,7 +3,7 @@ import {
   Of,
   TypeFamily
 } from "tshkt"
-import { Fun, id } from "../../data/function"
+import { Fun, Fun2, id } from "../../data/function"
 import { Apply } from "../apply"
 
 export interface Bind<F, A> extends Apply<F, A> {
@@ -77,4 +77,21 @@ export function pipeK <F extends IsBind<F>, A, B>(
     (acc, f) => composeK_(f, acc),
     g
   )
+}
+
+/**
+ * Monadic conditional check.
+ *
+ * @param mc Monadic action that will result in canditional flag.
+ */
+export function ifM <F extends IsBind<F>, A>(
+  mc: Of<F, boolean>
+): Fun2<Of<F, A>, Of<F, A>, Of<F, A>> {
+  return (
+    (ft: Of<F, A>) => (
+      (ff: Of<F, A>) => (
+        mc.bind((cond => cond ? ft : ff) as Fun<boolean, Of<F, A>>)
+      ) as Fun<Of<F, A>, Of<F, A>>
+    )
+  ) as Fun2<Of<F, A>, Of<F, A>, Of<F, A>>
 }
