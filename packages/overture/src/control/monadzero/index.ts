@@ -1,12 +1,13 @@
 import {
   Kind1,
+  Of,
   TypeFamily
 } from "tshkt"
 import { Alternative } from "../alternative"
 import { Pure } from "../applicative"
 import { Monad } from "../monad"
 import { Empty } from "../plus"
-// import { Unit, unit } from "../../data/unit"
+import { Unit, unit } from "../../data/unit"
 
 /**
  * MonadZero interface provides no methods on its own.
@@ -21,9 +22,18 @@ export interface IsMonadZero<F> extends TypeFamily<Kind1> {
   (): MonadZero<F, this[0]>
 }
 
-// Is there a way to infer A here?
-// export function guard <F extends IsMonadZero<F>>(
-//   cond: boolean
-// ) {
-//   return cond ? A.pure(unit) : A.empty()
-// }
+/**
+ * If condition is false, fail using [[empty]] from [[Plus]].
+ * Otherwise return monadic [[Unit]].
+ * Useful to short-circuit monadic chains.
+ *
+ * @param A Due to TypeScript type system, we need to pass
+ *          which monad are we talking about.
+ * @param cond Condition.
+ */
+export function guard <F extends IsMonadZero<F>>(
+  A: Pure<F> & Empty<F>,
+  cond: boolean,
+): Of<F, Unit> {
+  return cond ? A.pure(unit) : A.empty()
+}
