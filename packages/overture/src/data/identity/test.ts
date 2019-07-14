@@ -10,7 +10,7 @@ import applicative from "../../control/applicative/laws"
 import bind from "../../control/bind/laws"
 import monad from "../../control/monad/laws"
 import { Identity } from "."
-import { arbFun } from "../function/test"
+import arbFun from "../function/arbitrary"
 
 function arbIdentity <A>(arbA: Arbitrary<A>): Arbitrary<Identity<A>> {
   return arbA.map(_ => new Identity(_))

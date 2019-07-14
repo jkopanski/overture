@@ -1,9 +1,7 @@
 import {
-  Arbitrary,
   anything,
   assert,
   boolean,
-  func,
   integer,
   string,
   property
@@ -15,10 +13,7 @@ import {
 // for side effects
 import "."
 import { Fun } from "."
-
-export function arbFun<A, B>(arbB: Arbitrary<B>): Arbitrary<Fun<A, B>> {
-  return func<[A], B>(arbB) as Arbitrary<Fun<A, B>>
-}
+import arbFun from "./arbitrary"
 
 describe("Data.Function", () => {
   describe("Semigroupoid laws", () => {
