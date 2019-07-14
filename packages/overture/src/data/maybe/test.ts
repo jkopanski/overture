@@ -1,5 +1,4 @@
 import {
-  Arbitrary,
   anything,
   string,
   integer
@@ -14,12 +13,9 @@ import plus from "../../control/plus/laws"
 import alternative from "../../control/alternative/laws"
 import monadzero from "../../control/monadzero/laws"
 import monadplus from "../../control/monadplus/laws"
-import { Maybe, just, nothing } from "."
+import { Maybe } from "."
 import arbFun from "../function/arbitrary"
-
-function arbMaybe <A>(arbA: Arbitrary<A>): Arbitrary<Maybe<A>> {
-  return arbA.map(val => val === null ? just(val) : nothing)
-}
+import arbMaybe from "./arbitrary"
 
 describe("Data.Maybe", () => {
   functor(arbMaybe(anything()), anything())
