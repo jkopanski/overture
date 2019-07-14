@@ -14,7 +14,7 @@ import plus from "../../control/plus/laws"
 import alternative from "../../control/alternative/laws"
 import monadzero from "../../control/monadzero/laws"
 import monadplus from "../../control/monadplus/laws"
-import { Maybe, Just, Nothing, just, nothing } from "."
+import { Maybe, just, nothing } from "."
 import arbFun from "../function/arbitrary"
 
 function arbMaybe <A>(arbA: Arbitrary<A>): Arbitrary<Maybe<A>> {
