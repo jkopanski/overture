@@ -5,7 +5,8 @@ import {
   TypeFamily
 } from "tshkt"
 import { Fun, id } from "../function"
-import { MonadPlus } from "../../control/monadplus"
+import { Eq, HasEq } from "../eq"
+import { MonadZero } from "../../control/monadzero"
 
 interface MaybeF extends TypeFamily<Kind1> {
   (): Maybe<this[0]>
@@ -19,8 +20,8 @@ interface MaybeF extends TypeFamily<Kind1> {
  * @typeparam A Type of possible value.
  */
 export abstract class Maybe<A>
-  implements MonadPlus<MaybeF, A> {
-    [Generic.Type]: Generic1<MaybeF, A>
+  implements Eq<Maybe<HasEq<A>>>, MonadZero<MaybeF, A> {
+    [Generic.Type1]: Generic1<MaybeF, A>
     ["constructor"]: typeof Maybe
 
     constructor () {}
@@ -38,6 +39,7 @@ export abstract class Maybe<A>
     abstract apply <B>(f: Maybe<Fun<A, B>>): Maybe<B>
     abstract bind <B>(f: Fun<A, Maybe<B>>): Maybe<B>
     abstract alt (fa: Maybe<A>): Maybe<A>
+    abstract eq (fa: Maybe<HasEq<A>>): boolean
 }
 
 export class Just<A> extends Maybe<A> {
@@ -67,6 +69,12 @@ export class Just<A> extends Maybe<A> {
   alt (_fa: Maybe<A>): Maybe<A> {
     return this
   }
+  eq (fa: Maybe<HasEq<A>>): boolean {
+    return fa.fork({
+      nothing: () => false,
+      just: a => a === this.value
+    })
+  }
 }
 
 export class Nothing<A> extends Maybe<A> {
@@ -88,6 +96,12 @@ export class Nothing<A> extends Maybe<A> {
   }
   alt (fa: Maybe<A>): Maybe<A> {
     return fa
+  }
+  eq (fa: Maybe<HasEq<A>>): boolean {
+    return fa.fork({
+      nothing: () => true,
+      just: _ => false
+    })
   }
 }
 

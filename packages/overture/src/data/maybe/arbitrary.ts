@@ -1,4 +1,7 @@
-import { Arbitrary } from "fast-check"
+import {
+  Arbitrary,
+  option
+} from "fast-check"
 import {
   Maybe,
   just,
@@ -8,9 +11,8 @@ import {
 export default function <A>(
   arbA: Arbitrary<A>
 ): Arbitrary<Maybe<A>> {
-  return arbA.map(
-    val =>
-      val === null
+  return option(arbA).map(
+    val => val === null
       ? nothing
       : just(val)
   )
