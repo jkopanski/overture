@@ -10,19 +10,26 @@
  * modyfing `Function.prototype`.
  */
 import {
+  Kind1,
   Kind2,
   Generic,
+  Generic1,
   Generic2,
   TypeFamily
 } from "tshkt"
 
 export interface Fun<A, B> extends Function {
-  [Generic.Type]: Generic2<FunF, A, B>
+  [Generic.Type1]: Generic1<FunF<A>, B>
+  [Generic.Type2]: Generic2<FunKind, A, B>
   (a: A): B
 }
 
-interface FunF extends TypeFamily<Kind2> {
+interface FunKind extends TypeFamily<Kind2> {
   (): Fun<this[0], this[1]>
+}
+
+interface FunF<A> extends TypeFamily<Kind1> {
+  (): Fun<A, this[0]>
 }
 
 export const id = <A>(a: A) => a

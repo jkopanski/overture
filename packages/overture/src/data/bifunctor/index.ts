@@ -2,6 +2,7 @@ import {
   Generic,
   Generic2,
   Kind2,
+  Of2,
   TypeFamily
 } from "tshkt"
 import { Fun, id } from "../function"
@@ -12,19 +13,18 @@ import { Fun, id } from "../function"
  * Classes that extend [[Bifunctor]] need to implement `bimap`
  * and get 2 utilis: [[lmap]] and [[rmap]] for free.
  */
-export abstract class Bifunctor<L, R> {
-  [Generic.Type]: Generic2<IsBifunctor, L, R>
-
+export interface Bifunctor<F, L, R> {
   /**
    * Transform both arguments simultaneously
    *
    * @param f Function that maps over first Bifunctor argument.
    * @param g Function that maps over second Bifunctor argument.
    */
-  abstract bimap <A, B>(
+  bimap <A, B>(
+    this: Of2<F, L, R>,
     f: Fun<L, A>,
     g: Fun<R, B>
-  ): Bifunctor<A, B>
+  ): Of2<F, A, B>
 
   /**
    * Map over first Bifunctor parameter,
@@ -32,11 +32,9 @@ export abstract class Bifunctor<L, R> {
    *
    * @param f Function that maps over first parameter.
    */
-  lmap <A>(
-    f: Fun<L, A>
-  ) {
-    return this.bimap(f, id as Fun<R, R>)
-  }
+  // lmap <A>(f: Fun<L, A>): Of2<F, A, R> {
+  //   return this.bimap(f, id as Fun<R, R>)
+  // }
 
   /**
    * Map over second Bifunctor parameter,
@@ -44,14 +42,11 @@ export abstract class Bifunctor<L, R> {
    *
    * @param f Function that maps over second parameter.
    */
-  rmap <B>(
-    this: Bifunctor<L, R>,
-    f: Fun<R, B>
-  ): Bifunctor<L, B> {
-    return this.bimap(id as Fun<L, L>, f)
-  }
+  // rmap <B>(f: Fun<R, B>): Of2<F, L, B> {
+  //   return this.bimap(id as Fun<L, L>, f)
+  // }
 }
 
-export interface IsBifunctor extends TypeFamily<Kind2> {
-  (): Bifunctor<this[0], this[1]>
+export interface IsBifunctor<F> extends TypeFamily<Kind2> {
+  (): Bifunctor<F, this[0], this[1]>
 }

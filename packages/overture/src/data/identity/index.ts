@@ -12,7 +12,7 @@ import { Bind } from "../../control/bind"
 
 export class Identity<A>
   implements Functor<IdentityF, A>, Apply<IdentityF, A>, Applicative<IdentityF, A>, Bind<IdentityF, A> {
-    [Generic.Type]!: Generic1<IdentityF, A>
+    [Generic.Type1]!: Generic1<IdentityF, A>
     ["constructor"]: typeof Identity
 
     constructor (private value: A) {}

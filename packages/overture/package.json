@@ -31,7 +31,7 @@
     "typescript-language-server": "^0.3.8"
   },
   "dependencies": {
-    "tshkt": "^0.2.0-alpha.2"
+    "tshkt": "file:../tshkt"
   },
   "jest": {
     "preset": "ts-jest",
