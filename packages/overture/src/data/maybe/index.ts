@@ -6,6 +6,7 @@ import {
 } from "tshkt"
 import { Fun, id } from "../function"
 import { Eq, HasEq } from "../eq"
+import { Show, HasShow } from "../show"
 import { MonadZero } from "../../control/monadzero"
 
 interface MaybeF extends TypeFamily<Kind1> {
@@ -20,26 +21,29 @@ interface MaybeF extends TypeFamily<Kind1> {
  * @typeparam A Type of possible value.
  */
 export abstract class Maybe<A>
-  implements Eq<Maybe<HasEq<A>>>, MonadZero<MaybeF, A> {
-    [Generic.Type1]: Generic1<MaybeF, A>
-    ["constructor"]: typeof Maybe
+  implements Eq<Maybe<HasEq<A>>>,
+    Show<Maybe<HasShow<A>>>,
+    MonadZero<MaybeF, A> {
+      [Generic.Type1]: Generic1<MaybeF, A>
+      ["constructor"]: typeof Maybe
 
-    constructor () {}
+      constructor () {}
 
-    static pure <B>(b: B): Maybe<B> {
-      return new Just(b)
-    }
+      static pure <B>(b: B): Maybe<B> {
+        return new Just(b)
+      }
 
-    static empty <B>(): Maybe<B> {
-      return nothing
-    }
+      static empty <B>(): Maybe<B> {
+        return nothing
+      }
 
-    abstract fork <B>(f: Fork<A, B>): B
-    abstract map <B>(f: Fun<A, B>): Maybe<B>
-    abstract apply <B>(f: Maybe<Fun<A, B>>): Maybe<B>
-    abstract bind <B>(f: Fun<A, Maybe<B>>): Maybe<B>
-    abstract alt (fa: Maybe<A>): Maybe<A>
-    abstract eq (fa: Maybe<HasEq<A>>): boolean
+      abstract fork <B>(f: Fork<A, B>): B
+      abstract map <B>(f: Fun<A, B>): Maybe<B>
+      abstract apply <B>(f: Maybe<Fun<A, B>>): Maybe<B>
+      abstract bind <B>(f: Fun<A, Maybe<B>>): Maybe<B>
+      abstract alt (fa: Maybe<A>): Maybe<A>
+      abstract eq (fa: Maybe<HasEq<A>>): boolean
+      abstract toString (this: Maybe<HasShow<A>>): string
 }
 
 export class Just<A> extends Maybe<A> {
@@ -75,6 +79,9 @@ export class Just<A> extends Maybe<A> {
       just: a => a === this.value
     })
   }
+  toString (this: Just<HasShow<A>>): string {
+    return `Just ${this.value.toString()}`
+  }
 }
 
 export class Nothing<A> extends Maybe<A> {
@@ -102,6 +109,9 @@ export class Nothing<A> extends Maybe<A> {
       nothing: () => true,
       just: _ => false
     })
+  }
+  toString (): string {
+    return "Nothing"
   }
 }
 
