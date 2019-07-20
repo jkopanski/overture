@@ -9,7 +9,7 @@
     "build": "rollup -c rollup.config.ts",
     "lint": "standard 'src/**/*.ts'",
     "start": "rollup -c rollup.config.ts -w",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [
     "prelude"
@@ -31,7 +31,7 @@
     "typescript-language-server": "^0.3.8"
   },
   "dependencies": {
-    "tshkt": "file:../tshkt"
+    "tshkt": "jkopanski/tshkt#241a34b"
   },
   "jest": {
     "preset": "ts-jest",
