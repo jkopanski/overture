@@ -1,7 +1,13 @@
 {
   "include": ["src/**/*.ts"],
   "compilerOptions": {
-    "strict": true,
+    "target": "es2015",
+    "module": "umd",
+    "moduleResolution": "Node",
+    "declaration": true,
+    "outDir": "./dist",
+    "sourceMap": true,
+    "strict": true
     // This enables:
     // noImplicitAny
     // noImplicitThis
@@ -10,6 +16,5 @@
     // strictNullChecks
     // strictFunctionTypes
     // strictPropertyInitialization
-    "resolveJsonModule": true
   }
 }
