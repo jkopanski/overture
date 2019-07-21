@@ -2,12 +2,8 @@
   "include": ["src/**/*.ts"],
   "compilerOptions": {
     "target": "es2015",
-    "module": "umd",
-    "moduleResolution": "Node",
-    "declaration": true,
-    "outDir": "./dist",
-    "sourceMap": true,
-    "strict": true
+    "strict": true,
+    "resolveJsonModule": true
     // This enables:
     // noImplicitAny
     // noImplicitThis

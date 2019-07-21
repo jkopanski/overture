@@ -1,6 +1,12 @@
 {
   "extends": "./tsconfig.json",
+  "exclude": ["src/**/*test*.ts"],
   "compilerOptions": {
     "target": "es5",
+    "module": "umd",
+    "moduleResolution": "Node",
+    "declaration": true,
+    "outDir": "./dist",
+    "sourceMap": true
   }
 }
