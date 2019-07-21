@@ -8,6 +8,7 @@ in
     buildInputs = [
       node
       pkgs.nodePackages.lerna
+      pkgs.nodePackages.yarn
     ];
     shellHook = ''
       export PATH=$PWD/node_modules/.bin:$PATH

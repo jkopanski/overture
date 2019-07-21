@@ -1,6 +1,12 @@
 {
-  "packages": [
-    "packages/*"
-  ],
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "command": {
+    "bootstrap": {
+      "__comment": "hoist is unsupported with yarn",
+      "hoist": false,
+      "strict": true
+    }
+  },
   "version": "0.0.0"
 }
