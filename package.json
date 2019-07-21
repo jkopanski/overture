@@ -1,0 +1,9 @@
+{
+  "name": "@famisoft/monorepo",
+  "description": "Functional programing libraries and utilities",
+  "private": true,
+  "license": "BSD-3-Clause",
+  "devDependencies": {
+    "lerna": "^3.14.1"
+  }
+}
