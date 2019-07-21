@@ -4,9 +4,13 @@ import {
   Kind1,
   TypeFamily
 } from "tshkt"
-import { Fun, id } from "../function"
+
+// Data
 import { Eq, HasEq } from "../eq"
-import { Show, HasShow } from "../show"
+import { Fun, id } from "../function"
+import { HasShow, Show } from "../show"
+
+// Control
 import { MonadZero } from "../../control/monadzero"
 
 interface MaybeF extends TypeFamily<Kind1> {
@@ -27,20 +31,18 @@ export abstract class Maybe<A>
       [Generic.Type1]: Generic1<MaybeF, A>
       ["constructor"]: typeof Maybe
 
-      constructor () {}
-
-      static pure <B>(b: B): Maybe<B> {
+      static pure<B> (b: B): Maybe<B> {
         return new Just(b)
       }
 
-      static empty <B>(): Maybe<B> {
+      static empty<B> (): Maybe<B> {
         return nothing
       }
 
-      abstract fork <B>(f: Fork<A, B>): B
-      abstract map <B>(f: Fun<A, B>): Maybe<B>
-      abstract apply <B>(f: Maybe<Fun<A, B>>): Maybe<B>
-      abstract bind <B>(f: Fun<A, Maybe<B>>): Maybe<B>
+      abstract fork<B> (f: Fork<A, B>): B
+      abstract map<B> (f: Fun<A, B>): Maybe<B>
+      abstract apply<B> (f: Maybe<Fun<A, B>>): Maybe<B>
+      abstract bind<B> (f: Fun<A, Maybe<B>>): Maybe<B>
       abstract alt (fa: Maybe<A>): Maybe<A>
       abstract eq (fa: Maybe<HasEq<A>>): boolean
       abstract toString (this: Maybe<HasShow<A>>): string
@@ -55,19 +57,19 @@ export class Just<A> extends Maybe<A> {
     return this.value
   }
 
-  fork <B>(f: Fork<A, B>): B {
+  fork<B> (f: Fork<A, B>): B {
     return f.just(this.value)
   }
-  map <B>(f: Fun<A, B>): Maybe<B> {
+  map<B> (f: Fun<A, B>): Maybe<B> {
     return new Just(f(this.value))
   }
-  apply <B>(f: Maybe<Fun<A, B>>): Maybe<B> {
+  apply<B> (f: Maybe<Fun<A, B>>): Maybe<B> {
     return f.fork({
       nothing: () => nothing,
       just: g => new Just(g(this.value))
     })
   }
-  bind <B>(f: Fun<A, Maybe<B>>): Maybe<B> {
+  bind<B> (f: Fun<A, Maybe<B>>): Maybe<B> {
     return f(this.value)
   }
   alt (_fa: Maybe<A>): Maybe<A> {
@@ -89,16 +91,16 @@ export class Nothing<A> extends Maybe<A> {
     super()
   }
 
-  fork <B> (f: Fork<A, B>) {
+  fork<B> (f: Fork<A, B>) {
     return f.nothing()
   }
-  map <B>(_f: Fun<A, B>): Maybe<B> {
+  map<B> (_f: Fun<A, B>): Maybe<B> {
     return nothing
   }
-  apply <B>(_f: Maybe<Fun<A, B>>): Maybe<B> {
+  apply<B> (_f: Maybe<Fun<A, B>>): Maybe<B> {
     return nothing
   }
-  bind <B>(_f: Fun<A, Maybe<B>>): Maybe<B> {
+  bind<B> (_f: Fun<A, Maybe<B>>): Maybe<B> {
     return nothing
   }
   alt (fa: Maybe<A>): Maybe<A> {
@@ -131,7 +133,7 @@ export interface Fork<A, B> {
  * @param f Function to apply if there is a value.
  * @param m Maybe value.
  */
-export function maybe <A, B>(
+export function maybe<A, B> (
   def: B,
   f: Fun<A, B>,
   m: Maybe<A>
@@ -149,7 +151,7 @@ export function maybe <A, B>(
  * @param a Default value.
  * @param m Maybe to extract value from.
  */
-export function fromMaybe <A>(
+export function fromMaybe<A> (
   a: A,
   m: Maybe<A>
 ): A {
@@ -161,7 +163,7 @@ export function fromMaybe <A>(
  *
  * @param m Maybe to check.
  */
-export function isJust <A>(
+export function isJust<A> (
   m: Maybe<A>
 ): m is Just<A> {
   return m instanceof Just
@@ -172,7 +174,7 @@ export function isJust <A>(
  *
  * @param m Maybe to check.
  */
-export function isNothing <A>(
+export function isNothing<A> (
   m: Maybe<A>
 ): m is Nothing<A> {
   return m instanceof Nothing
@@ -181,7 +183,7 @@ export function isNothing <A>(
 /**
  * Extracts value from [[Just]].
  */
-export function fromJust <A>(
+export function fromJust<A> (
   justa: Just<A>
 ): A {
   return justa.get()
@@ -193,7 +195,7 @@ export function fromJust <A>(
  *
  * @param marr Array of Maybe's.
  */
-export function catMaybes <A>(
+export function catMaybes<A> (
   marr: Array<Maybe<A>>
 ): Array<A> {
   return marr.reduce(
@@ -212,7 +214,7 @@ export function catMaybes <A>(
  * @param f Mapping function.
  * @param as Array of input values.
  */
-export function mapMaybe <A, B>(
+export function mapMaybe<A, B> (
   f: Fun<A, Maybe<B>>,
   as: Array<A>
 ): Array<B> {

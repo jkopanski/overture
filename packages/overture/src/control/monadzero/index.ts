@@ -3,11 +3,13 @@ import {
   Of,
   TypeFamily
 } from "tshkt"
+
+import { Unit, unit } from "../../data/unit"
+
 import { Alternative } from "../alternative"
 import { Pure } from "../applicative"
 import { Monad } from "../monad"
 import { Empty } from "../plus"
-import { Unit, unit } from "../../data/unit"
 
 /**
  * MonadZero interface provides no methods on its own.
@@ -31,7 +33,7 @@ export interface IsMonadZero<F> extends TypeFamily<Kind1> {
  *          which monad are we talking about.
  * @param cond Condition.
  */
-export function guard <F extends IsMonadZero<F>>(
+export function guard<F extends IsMonadZero<F>> (
   A: Pure<F> & Empty<F>,
   cond: boolean,
 ): Of<F, Unit> {

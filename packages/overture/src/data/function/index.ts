@@ -10,11 +10,11 @@
  * modyfing `Function.prototype`.
  */
 import {
-  Kind1,
-  Kind2,
   Generic,
   Generic1,
   Generic2,
+  Kind1,
+  Kind2,
   TypeFamily
 } from "tshkt"
 
@@ -32,13 +32,13 @@ interface FunF<A> extends TypeFamily<Kind1> {
   (): Fun<A, this[0]>
 }
 
-export const id = <A>(a: A) => a
+export const id = <A> (a: A) => a
 
-export function constant <A>(a: A) {
+export function constant<A> (a: A) {
   return ((_: any) => a) as Fun<any, A>
 }
 
-export function fun <A, B>(g: (a: A) => B): Fun<A, B> {
+export function fun<A, B> (g: (a: A) => B): Fun<A, B> {
   return g as Fun<A, B>
 }
 
@@ -47,14 +47,14 @@ export type Fun3<A, B, C, D> = Fun<A, Fun<B, Fun<C, D>>>
 
 declare global {
   interface Function {
-    compose: <A, B, C>(
+    compose: <A, B, C> (
       this: Fun<B, C>,
       f: Fun<A, B>
-    ) => Fun<A, C>;
+    ) => Fun<A, C>
   }
 }
 
-Function.prototype["compose"] = function <A, B, C>(
+Function.prototype.compose = function<A, B, C> (
   this: Fun<B, C>,
   f: Fun<A, B>
 ): Fun<A, C> {

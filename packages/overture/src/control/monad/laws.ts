@@ -1,11 +1,13 @@
 import { Arbitrary, assert, property } from "fast-check"
 import { Of } from "tshkt"
 import { isDeepStrictEqual as eq } from "util"
-import { IsMonad } from "."
-import { Pure } from "../applicative"
-import { Fun, fun } from "../../data/function"
 
-export default function laws<F extends IsMonad<F>, A, B, C>(
+import { Fun, fun } from "../../data/function"
+import { Pure } from "../applicative"
+
+import { IsMonad } from "."
+
+export default function laws<F extends IsMonad<F>, A, B> (
   A: Pure<F>,
   arbA: Arbitrary<A>,
   arbX: Arbitrary<Of<F, A>>,

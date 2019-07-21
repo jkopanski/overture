@@ -12,7 +12,7 @@ export interface Ordering
     Show<Ordering> {
       eq (this: Ordering, o: Ordering): boolean
       compare (this: Ordering, o: Ordering): Ordering
-      toString(): string
+      toString (): string
 }
 
 class LessThan implements Ordering {
@@ -76,20 +76,20 @@ export const GT: Ordering = new GreaterThan()
  * to `compare` items of type `A`.
  */
 export interface Ord<A> extends Eq<A> {
-  compare(this: A, other: A): Ordering
+  compare (this: A, other: A): Ordering
 }
 
 /**
  * Test if `a` is less than `b`.
  */
-export function less <A extends Ord<A>>(a: A, b: A): boolean {
+export function less<A extends Ord<A>> (a: A, b: A): boolean {
   return a.compare(b).eq(LT)
 }
 
 /**
  * Test if `a` is less or equal than `b`.
  */
-export function lessEq <A extends Ord<A>>(a: A, b: A): boolean {
+export function lessEq<A extends Ord<A>> (a: A, b: A): boolean {
   const ord = a.compare(b)
   return ord.eq(LT) || ord.eq(EQ)
 }
@@ -97,14 +97,14 @@ export function lessEq <A extends Ord<A>>(a: A, b: A): boolean {
 /**
  * Test if `a` is greater than `b`.
  */
-export function more <A extends Ord<A>>(a: A, b: A): boolean {
+export function more<A extends Ord<A>> (a: A, b: A): boolean {
   return a.compare(b).eq(GT)
 }
 
 /**
  * Test if `a` is greater or equal than `b`.
  */
-export function moreEq <A extends Ord<A>>(a: A, b: A): boolean {
+export function moreEq<A extends Ord<A>> (a: A, b: A): boolean {
   const ord = a.compare(b)
   return ord.eq(GT) || ord.eq(EQ)
 }
@@ -113,7 +113,7 @@ export function moreEq <A extends Ord<A>>(a: A, b: A): boolean {
  * Get bigger of two items.
  * Prefer left one in case of equality.
  */
-export function max <A extends Ord<A>>(a: A, b: A): A {
+export function max<A extends Ord<A>> (a: A, b: A): A {
   return a.compare(b).eq(LT) ? b : a
 }
 
@@ -121,6 +121,6 @@ export function max <A extends Ord<A>>(a: A, b: A): A {
  * Get smallor of two items.
  * Prefer left one in case of equality.
  */
-export function min <A extends Ord<A>>(a: A, b: A): A {
+export function min<A extends Ord<A>> (a: A, b: A): A {
   return b.compare(a).eq(LT) ? a : a
 }

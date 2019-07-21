@@ -3,8 +3,9 @@ import {
   Of,
   TypeFamily
 } from "tshkt"
-import { Functor, voidRight } from "../../data/functor"
+
 import { Fun, Fun2, constant, id } from "../../data/function"
+import { Functor, voidRight } from "../../data/functor"
 
 /**
  * Apply is an interface supporting `apply` operation,
@@ -12,14 +13,14 @@ import { Fun, Fun2, constant, id } from "../../data/function"
  * to an orgument in a context
  */
 export interface Apply<F, A> extends Functor<F, A> {
-  apply <B>(this: Of<F, A>, f: Of<F, Fun<A, B>>): Of<F, B>
+  apply<B> (this: Of<F, A>, f: Of<F, Fun<A, B>>): Of<F, B>
 }
 
 export interface IsApply<F> extends TypeFamily<Kind1> {
   (): Apply<F, this[0]>
 }
 
-export function liftA <F extends IsApply<F>, A, B>(
+export function liftA<F extends IsApply<F>, A, B> (
   f: Fun<A, B>
 ): Fun<Of<F, A>, Of<F, B>> {
   return (
@@ -34,7 +35,7 @@ export function liftA <F extends IsApply<F>, A, B>(
  *
  * @param f Function to lift in context `F`.
  */
-export function liftA2 <F extends IsApply<F>, A, B, C>(
+export function liftA2<F extends IsApply<F>, A, B, C> (
   f: Fun2<A, B, C>
 ): Fun2<Of<F, A>, Of<F, B>, Of<F, C>> {
   return (
@@ -49,7 +50,7 @@ export function liftA2 <F extends IsApply<F>, A, B, C>(
  * @param fa Computation with discarded result.
  * @param fb Computation to keep result.
  */
-export function apSecond <F extends IsApply<F>, A, B>(
+export function apSecond<F extends IsApply<F>, A, B> (
   fa: Of<F, A>,
   fb: Of<F, B>
 ): Of<F, B> {
@@ -62,7 +63,7 @@ export function apSecond <F extends IsApply<F>, A, B>(
  * @param fa Computation to keep result.
  * @param fb Computation with discarded result.
  */
-export function apFirst <F extends IsApply<F>, A, B>(
+export function apFirst<F extends IsApply<F>, A, B> (
   fa: Of<F, A>,
   fb: Of<F, B>
 ): Of<F, A> {

@@ -3,10 +3,11 @@ import {
   Of,
   TypeFamily
 } from "tshkt"
+
 import { Apply } from "../apply"
 
 export interface Pure<F> {
-  pure <A>(a: A): Of<F, A>
+  pure<A> (a: A): Of<F, A>
 }
 
 export interface Applicative<F, A> extends Apply<F, A> {

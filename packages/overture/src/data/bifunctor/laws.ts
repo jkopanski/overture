@@ -1,10 +1,11 @@
 import { Arbitrary, assert, property } from "fast-check"
-import { Of2 } from "tshkt";
+import { Of2 } from "tshkt"
 import { isDeepStrictEqual as eq } from "util"
-import { Bifunctor, IsBifunctor } from "."
+
+import { IsBifunctor } from "."
 import { Fun, fun, id } from "../function"
 
-export default function laws<A, B, L, R, L1, R1, F extends IsBifunctor<F>>(
+export default function laws<A, B, L, R, L1, R1, F extends IsBifunctor<F>> (
   arbBi: Arbitrary<Of2<F, A, B>>,
   arbF1: Arbitrary<Fun<A, L>>,
   arbF2: Arbitrary<Fun<L, L1>>,

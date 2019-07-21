@@ -9,6 +9,6 @@ export type Void = never
  * This is useful to cover some branches that are impossible
  * due to being marked as [[Void]].
  */
-export function absurd <A>(_v: Void): A {
+export function absurd<A> (_v: Void): A {
   throw new Error("Impossible happend!")
 }

@@ -1,19 +1,23 @@
 import {
   anything,
-  string,
-  integer
+  integer,
+  string
 } from "fast-check"
+
+// Data
 import eq from "../eq/laws"
 import functor from "../functor/laws"
-import apply from "../../control/apply/laws"
+
+// Control
+import alt from "../../control/alt/laws"
+import alternative from "../../control/alternative/laws"
 import applicative from "../../control/applicative/laws"
+import apply from "../../control/apply/laws"
 import bind from "../../control/bind/laws"
 import monad from "../../control/monad/laws"
-import alt from "../../control/alt/laws"
-import plus from "../../control/plus/laws"
-import alternative from "../../control/alternative/laws"
 import monadzero from "../../control/monadzero/laws"
-// import monadplus from "../../control/monadplus/laws"
+import plus from "../../control/plus/laws"
+
 import { Maybe } from "."
 import arbFun from "../function/arbitrary"
 import arbMaybe from "./arbitrary"

@@ -6,9 +6,11 @@ import {
   Kind2,
   TypeFamily,
 } from "tshkt"
-import { Fun } from "../function"
-import { Monad } from "../../control/monad"
+
 import { Bifunctor } from "../bifunctor"
+import { Fun } from "../function"
+
+import { Monad } from "../../control/monad"
 
 interface EitherKind extends TypeFamily<Kind2> {
   (): Either<this[0], this[1]>
@@ -34,15 +36,15 @@ export abstract class Either<L, R>
 
     ["constructor"]: typeof Either
 
-    static pure <A>(a: A): Either<any, A> {
+    static pure<A> (a: A): Either<any, A> {
       return new Right(a)
     }
 
-    abstract fork <A>(f: Fork<L, R, A>): A
-    abstract map <B>(f: Fun<R, B>): Either<L, B>
-    abstract apply <B>(f: Either<L, Fun<R, B>>): Either<L, B>
-    abstract bind <B>(f: Fun<R, Either<L, B>>): Either<L, B>
-    abstract bimap <A, B>(
+    abstract fork<A> (f: Fork<L, R, A>): A
+    abstract map<B> (f: Fun<R, B>): Either<L, B>
+    abstract apply<B> (f: Either<L, Fun<R, B>>): Either<L, B>
+    abstract bind<B> (f: Fun<R, Either<L, B>>): Either<L, B>
+    abstract bimap<A, B> (
       f: Fun<L, A>,
       g: Fun<R, B>
     ): Either<A, B>
@@ -57,12 +59,12 @@ export class Left<L, R> extends Either<L, R> {
     return this.value
   }
 
-  fork <A>(f: Fork<L, R, A>): A {
+  fork<A> (f: Fork<L, R, A>): A {
     return f.left(this.value)
   }
 
-  map <B>(
-    //this: Of<EitherF<L>, R>,
+  map<B> (
+    // this: Of<EitherF<L>, R>,
     _f: Fun<R, B>
   ): Either<L, B> {
     // return new Left(this.value)
@@ -74,17 +76,17 @@ export class Left<L, R> extends Either<L, R> {
     return this as unknown as Left<L, B>
   }
 
-  apply <B>(_f: Either<L, Fun<R, B>>): Either<L, B> {
+  apply<B> (_f: Either<L, Fun<R, B>>): Either<L, B> {
     // return new Left(this.value)
     return this as unknown as Left<L, B>
   }
 
-  bind <B>(_f: Fun<R, Either<L, B>>): Either<L, B> {
+  bind<B> (_f: Fun<R, Either<L, B>>): Either<L, B> {
     // return new Left(this.value)
     return this as unknown as Left<L, B>
   }
 
-  bimap <A, B>(
+  bimap<A, B> (
     f: Fun<L, A>,
     _g: Fun<R, B>
   ): Either<A, B> {
@@ -101,25 +103,25 @@ export class Right<L, R> extends Either<L, R> {
     return this.value
   }
 
-  fork <A>(f: Fork<L, R, A>): A {
+  fork<A> (f: Fork<L, R, A>): A {
     return f.right(this.value)
   }
 
-  map <B>(f: Fun<R, B>): Either<L, B> {
+  map<B> (f: Fun<R, B>): Either<L, B> {
     return new Right(f(this.value))
   }
 
-  apply <B>(f: Either<L, Fun<R, B>>): Either<L, B> {
+  apply<B> (f: Either<L, Fun<R, B>>): Either<L, B> {
     return f.bind((
       g => right(g(this.value))
     ) as Fun<Fun<R, B>, Either<L, B>>)
   }
 
-  bind <B>(f: Fun<R, Either<L, B>>) {
+  bind<B> (f: Fun<R, Either<L, B>>) {
     return f(this.value)
   }
 
-  bimap <A, B>(
+  bimap<A, B> (
     _f: Fun<L, A>,
     g: Fun<R, B>
   ): Either<A, B> {
@@ -135,7 +137,7 @@ export interface Fork<L, R, A> {
 /**
  * Shorthand utility for creating a [[Left]] value.
  */
-export function left <L, R>(l: L): Either<L, R> {
+export function left<L, R> (l: L): Either<L, R> {
   return new Left<L, R>(l)
 }
 
@@ -143,7 +145,7 @@ export function left <L, R>(l: L): Either<L, R> {
  * Shorthand utility for creating a [[Right]] value.
  * *Watch out* for reversed order of type parameters.
  */
-export function right <L, R>(r: R): Either<L, R> {
+export function right<L, R> (r: R): Either<L, R> {
   return new Right<L, R>(r)
 }
 
@@ -156,7 +158,7 @@ export function right <L, R>(r: R): Either<L, R> {
  * @param g Function to apply if [[Either]] is [[Right]].
  * @param e Either to analyse.
  */
-export function either <L, R, A>(
+export function either<L, R, A> (
   f: Fun<L, A>,
   g: Fun<R, A>,
   e: Either<L, R>
@@ -172,7 +174,7 @@ export function either <L, R, A>(
  *
  * @param e Either to check.
  */
-export function isLeft <L, R>(
+export function isLeft<L, R> (
   e: Either<L, R>
 ): e is Left<L, R> {
   return e instanceof Left
@@ -183,7 +185,7 @@ export function isLeft <L, R>(
  *
  * @param e Either to check.
  */
-export function isRight <L, R>(
+export function isRight<L, R> (
   e: Either<L, R>
 ): e is Right<L, R> {
   return e instanceof Right
@@ -192,7 +194,7 @@ export function isRight <L, R>(
 /**
  * Extract value held by [[Left]].
  */
-export function fromLeft <L, R>(
+export function fromLeft<L, R> (
   e: Left<L, R>
 ): L {
   return e.get()
@@ -201,7 +203,7 @@ export function fromLeft <L, R>(
 /**
  * Extract value held by [[Right].
  */
-export function fromRight <L, R>(
+export function fromRight<L, R> (
   e: Right<L, R>
 ): R {
   return e.get()

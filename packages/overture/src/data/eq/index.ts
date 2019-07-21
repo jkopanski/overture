@@ -1,8 +1,9 @@
 import {
-  Of,
   Kind1,
+  Of,
   TypeFamily
 } from "tshkt"
+
 import { Void } from "../void"
 
 export interface Eq<A> {

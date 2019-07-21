@@ -1,10 +1,9 @@
 import {
-  Generic,
-  Generic2,
   Kind2,
   Of2,
   TypeFamily
 } from "tshkt"
+
 import { Fun, id } from "../function"
 
 /**
@@ -20,33 +19,40 @@ export interface Bifunctor<F, L, R> {
    * @param f Function that maps over first Bifunctor argument.
    * @param g Function that maps over second Bifunctor argument.
    */
-  bimap <A, B>(
+  bimap<A, B> (
     this: Of2<F, L, R>,
     f: Fun<L, A>,
     g: Fun<R, B>
   ): Of2<F, A, B>
 
-  /**
-   * Map over first Bifunctor parameter,
-   * leaving second one as it is.
-   *
-   * @param f Function that maps over first parameter.
-   */
-  // lmap <A>(f: Fun<L, A>): Of2<F, A, R> {
-  //   return this.bimap(f, id as Fun<R, R>)
-  // }
-
-  /**
-   * Map over second Bifunctor parameter,
-   * leaving first one as it is.
-   *
-   * @param f Function that maps over second parameter.
-   */
-  // rmap <B>(f: Fun<R, B>): Of2<F, L, B> {
-  //   return this.bimap(id as Fun<L, L>, f)
-  // }
 }
 
 export interface IsBifunctor<F> extends TypeFamily<Kind2> {
   (): Bifunctor<F, this[0], this[1]>
+}
+
+/**
+ * Map over first Bifunctor parameter,
+ * leaving second one as it is.
+ *
+ * @param f Function that maps over first parameter.
+ */
+export function lmap<A, L, R, F extends IsBifunctor<F>> (
+  f: Fun<L, A>,
+  b: Of2<F, L, R>
+): Of2<F, A, R> {
+  return b.bimap(f, id as Fun<R, R>)
+}
+
+/**
+ * Map over second Bifunctor parameter,
+ * leaving first one as it is.
+ *
+ * @param f Function that maps over second parameter.
+ */
+export function rmap<B, L, R, F extends IsBifunctor<F>> (
+  f: Fun<R, B>,
+  b: Of2<F, L, R>
+): Of2<F, L, B> {
+  return b.bimap(id as Fun<L, L>, f)
 }

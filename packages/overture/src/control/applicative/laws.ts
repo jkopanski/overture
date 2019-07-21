@@ -1,10 +1,12 @@
 import { Arbitrary, assert, property } from "fast-check"
 import { Of } from "tshkt"
 import { isDeepStrictEqual as eq } from "util"
-import { IsApplicative, Pure } from "."
+
 import { Fun, fun, id } from "../../data/function"
 
-export default function laws<F extends IsApplicative<F>, A, B, V>(
+import { IsApplicative, Pure } from "."
+
+export default function laws<F extends IsApplicative<F>, A, B, V> (
   A: Pure<F>,
   arbV: Arbitrary<Of<F, V>>,
   arbU: Arbitrary<Of<F, Fun<A, B>>>,

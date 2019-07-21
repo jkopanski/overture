@@ -1,17 +1,23 @@
 import {
   Arbitrary,
   anything,
-  string,
-  integer
+  integer,
+  string
 } from "fast-check"
-import functor from "../functor/laws"
+
+// Data
 import bifunctor from "../bifunctor/laws"
-import apply from "../../control/apply/laws"
+import functor from "../functor/laws"
+
+// Control
 import applicative from "../../control/applicative/laws"
+import apply from "../../control/apply/laws"
 import bind from "../../control/bind/laws"
 import monad from "../../control/monad/laws"
-import arbFun from "../function/arbitrary"
+
 import { Fun } from "../function"
+import arbFun from "../function/arbitrary"
+
 import { Either } from "."
 import arbEither from "./arbitrary"
 
@@ -25,7 +31,11 @@ describe("Data.Either", () => {
   )
   functor(arbEither(anything(), anything()), anything())
   apply(
-    arbEither(string(), arbFun<number, string>(string()) as Arbitrary<Fun<number, string>>),
+    arbEither(
+      string(),
+      arbFun<number, string>(string()) as
+        Arbitrary<Fun<number, string>>
+    ),
     arbEither(string(), arbFun<any, number>(integer())),
     arbEither(string(), anything())
   )

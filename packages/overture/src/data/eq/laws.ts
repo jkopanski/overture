@@ -1,8 +1,9 @@
 import { Arbitrary, assert, pre, property } from "fast-check"
 import { isDeepStrictEqual as eq } from "util"
+
 import { Eq } from "."
 
-export default function laws<A extends Eq<A>>(
+export default function laws<A extends Eq<A>> (
   arbA: Arbitrary<A>
 ) {
   describe("Eq laws", () => {

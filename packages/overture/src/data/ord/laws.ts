@@ -1,7 +1,7 @@
 import { Arbitrary, assert, pre, property } from "fast-check"
-import { Ord, lessEq, moreEq, max, min } from "."
+import { Ord, lessEq, max, min, moreEq } from "."
 
-export default function laws<A extends Ord<A>>(
+export default function laws<A extends Ord<A>> (
   arbA: Arbitrary<A>
 ) {
   describe("Ord laws", () => {

@@ -1,0 +1,25 @@
+{
+  "extends": "tslint:recommended",
+  "rules": {
+    "array-type": [true, "generic"],
+    "arrow-parens": [true, "ban-single-arg-parens"],
+    "interface-name": [true, "never-prefix"],
+    "max-classes-per-file": { "severity": "off" },
+    "max-line-length": [true, 80],
+    "member-access": [true, "no-public"],
+    "member-ordering": { "severity": "off"},
+    "object-literal-sort-keys": { "options": "match-declaration-order-only" },
+    "ordered-imports": { "options": {
+      "import-sources-order": "lowercase-last",
+      "named-imports-order": "lowercase-last"
+    }},
+    "semicolon": [true, "never"],
+    "space-before-function-paren": { "options": "always" },
+    "trailing-comma": { "options": "never" },
+    "variable-name": { "options": [
+      "ban-keywords",
+      "check-format",
+      "allow-leading-underscore"
+    ]}
+  }
+}

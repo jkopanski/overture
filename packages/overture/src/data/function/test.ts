@@ -3,14 +3,16 @@ import {
   assert,
   boolean,
   integer,
-  string,
-  property
+  property,
+  string
 } from "fast-check"
+
 import {
   compose,
   pipe
 } from "../../control/semigroupoid"
 // for side effects
+
 import "."
 import { Fun } from "."
 import arbFun from "./arbitrary"

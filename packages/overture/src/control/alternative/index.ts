@@ -2,8 +2,9 @@ import {
   Kind1,
   TypeFamily
 } from "tshkt"
+
 import { Applicative, Pure } from "../applicative"
-import { Plus, Empty } from "../plus"
+import { Empty, Plus } from "../plus"
 
 /**
  * Alternative interface provides no methods on its own.

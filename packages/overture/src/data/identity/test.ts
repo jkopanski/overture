@@ -1,18 +1,21 @@
 import {
   Arbitrary,
   anything,
-  string,
-  integer
+  integer,
+  string
 } from "fast-check"
+
 import functor from "../functor/laws"
-import apply from "../../control/apply/laws"
+
 import applicative from "../../control/applicative/laws"
+import apply from "../../control/apply/laws"
 import bind from "../../control/bind/laws"
 import monad from "../../control/monad/laws"
+
 import { Identity } from "."
 import arbFun from "../function/arbitrary"
 
-function arbIdentity <A>(arbA: Arbitrary<A>): Arbitrary<Identity<A>> {
+function arbIdentity<A> (arbA: Arbitrary<A>): Arbitrary<Identity<A>> {
   return arbA.map(_ => new Identity(_))
 }
 

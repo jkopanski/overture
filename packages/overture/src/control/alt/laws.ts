@@ -1,10 +1,12 @@
 import { Arbitrary, assert, property } from "fast-check"
 import { Of } from "tshkt"
 import { isDeepStrictEqual as eq } from "util"
-import { IsAlt } from "."
+
 import { Fun } from "../../data/function"
 
-export default function laws<F extends IsAlt<F>, A, B>(
+import { IsAlt } from "."
+
+export default function laws<F extends IsAlt<F>, A, B> (
   arbF: Arbitrary<Fun<A, B>>,
   arbX: Arbitrary<Of<F, A>>,
 ) {

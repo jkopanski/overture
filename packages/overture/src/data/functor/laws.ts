@@ -5,7 +5,7 @@ import { IsFunctor } from "."
 import { fun } from "../function"
 import arbFun from "../function/arbitrary"
 
-export default function laws<F extends IsFunctor<F>, A>(
+export default function laws<F extends IsFunctor<F>, A> (
   arbFA: Arbitrary<Of<F, A>>,
   arbA: Arbitrary<A>
 ) {
