@@ -8,6 +8,7 @@
   "scripts": {
     "build-es": "tsc -p ./tsconfig.prod.json --outDir './dist/es' --module es2015",
     "build-umd": "tsc -p ./tsconfig.prod.json",
+    "lint": "tslint -p .",
     "typecheck": "tsc -p . --noEmit",
     "test": "jest"
   },
