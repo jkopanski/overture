@@ -1,5 +1,5 @@
 {
-  "name": "overture",
+  "name": "@famisoft/overture",
   "version": "0.0.1",
   "description": "Yet another typescript prelude.",
   "main": "dist/index.js",
