@@ -4,7 +4,6 @@
   "compilerOptions": {
     "target": "es5",
     "module": "umd",
-    "moduleResolution": "Node",
     "declaration": true,
     "outDir": "./dist",
     "sourceMap": true

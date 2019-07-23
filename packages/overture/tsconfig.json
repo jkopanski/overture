@@ -2,8 +2,8 @@
   "include": ["src/**/*.ts"],
   "compilerOptions": {
     "target": "es2015",
-    "strict": true,
-    "resolveJsonModule": true
+    "moduleResolution": "node",
+    "strict": true
     // This enables:
     // noImplicitAny
     // noImplicitThis
