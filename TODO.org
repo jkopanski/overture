@@ -1,5 +1,7 @@
 * Overture
 ** Classes
+*** TODO Semigroup
+*** TODO Monoid
 *** TODO Category
 *** TODO Arrow
 *** TODO Covariant
@@ -9,4 +11,17 @@
 ** Implementations
 *** TODO Data.Remote
 * Doable
+  ~do~ notation for overture.
+** DONE Await
+   This isn't possible as transformations run /after/ typechecking,
+   and ~await~ is expecting a ~Promise<T>~.
+   This won't allow me to enforce proper typing of program before
+   transformations.
+** Generotors
+   I could provide fake function type ~go~ that would take generator
+   as parameter. Similar to what [[https://funkia.github.io/jabz/#go][Jabz]] is doing. The fact that they are
+   doing it suggest that it could be properly typed, but instead of
+   running generators treat in as syntactic sugar and apply code
+   transformations.
 * Scope
+  Lens library based on overture.
