@@ -5,6 +5,7 @@ import * as Function from "./function"
 import * as Identity from "./identity"
 import * as Maybe from "./maybe"
 import * as Ord from "./ord"
+import * as Semigroup from "./semigroup"
 import * as Show from "./show"
 import * as Unit from "./unit"
 import * as Void from "./void"
@@ -17,6 +18,7 @@ export {
   Identity,
   Maybe,
   Ord,
+  Semigroup,
   Show,
   Unit,
   Void

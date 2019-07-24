@@ -1,6 +1,6 @@
 * Overture
 ** Classes
-*** TODO Semigroup
+*** DONE Semigroup
 *** TODO Monoid
 *** TODO Category
 *** TODO Arrow
