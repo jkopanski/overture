@@ -1,0 +1,31 @@
+{
+  "name": "@famisoft/doable",
+  "version": "0.0.0",
+  "description": "Do notation for TypeScript",
+  "keywords": [
+    "monad",
+    "async",
+    "await",
+    "compiler"
+  ],
+  "author": "Jakub Kopański <jkopanski@protonmail.com>",
+  "license": "BSD-3-Clause",
+  "main": "doable.js",
+  "typings": "index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git@git.sr.ht:~madnat/overture"
+  },
+  "scripts": {
+    "examples": "ttsc -p examples",
+    "test": "echo \"Error: run tests from root\" && exit 0"
+  },
+  "dependencies": {
+    "@famisoft/overture": "*",
+    "tshkt": "*",
+    "typescript": "*"
+  },
+  "devDependencies": {
+    "ttypescript": "^1.5.7"
+  }
+}

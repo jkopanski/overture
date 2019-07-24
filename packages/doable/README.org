@@ -1,0 +1,5 @@
+#+TITLE: doable
+#+AUTHOR: Jakub Kopański
+
+`doable` is a Typescript transformation that hijacks `async`/`await`
+and uses that as a `do` notation for `overture` defined monads.

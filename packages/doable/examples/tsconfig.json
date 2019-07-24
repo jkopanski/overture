@@ -1,0 +1,11 @@
+{
+  "extends": "../tsconfig.json",
+  "files": [
+    "ex01.ts"
+  ],
+  "compilerOptions": {
+    "plugins": [{
+      "transform": "../src/transform.ts"
+    }]
+  }
+}
