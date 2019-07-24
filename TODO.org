@@ -17,11 +17,19 @@
    and ~await~ is expecting a ~Promise<T>~.
    This won't allow me to enforce proper typing of program before
    transformations.
-** Generotors
+** DONE Generotors
    I could provide fake function type ~go~ that would take generator
    as parameter. Similar to what [[https://funkia.github.io/jabz/#go][Jabz]] is doing. The fact that they are
    doing it suggest that it could be properly typed, but instead of
    running generators treat in as syntactic sugar and apply code
    transformations.
+
+   This turns out to be dead end as well. The jabz approach works becouse of
+   loose typings of iterators/generators. That will however end with
+   realease of [[https://devblogs.microsoft.com/typescript/announcing-typescript-3-6-beta/][TypeScript 3.6]]. It is not possible for ~yield~ to extract
+   value hold by the monadic context.
+** TODO Custom Solution
+   I can use pair of 2 fake functions ~doable~ and ~bind~(?) that will mark
+   the scope of ~do~ block and bind monadic value inside that block.
 * Scope
   Lens library based on overture.
