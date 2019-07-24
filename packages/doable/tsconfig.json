@@ -1,16 +1,20 @@
 {
+  "extends": "../../tsconfig.json",
+
+  "include": [
+    "src/**/*",
+    "examples/**/*",
+    "index.d.ts"
+  ],
+
   "compilerOptions": {
-    "target": "es2015",
-    "strict": true,
-    // This enables:
-    // noImplicitAny
-    // noImplicitThis
-    // alwaysStrict
-    // strictBindCallApply
-    // strictNullChecks
-    // strictFunctionTypes
-    // strictPropertyInitialization
+    "rootDir": "src",
+    "outDir": "dist",
+
     "moduleResolution": "node",
     "preserveSymlinks": true
-  }
+  },
+  "references": [
+    { "path": "../overture" }
+  ]
 }

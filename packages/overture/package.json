@@ -2,12 +2,13 @@
   "name": "@famisoft/overture",
   "version": "0.0.1",
   "description": "Yet another typescript prelude.",
-  "main": "dist/index.js",
-  "module": "dist/index.es.js",
+  "main": "dist/umd/index.js",
+  "module": "dist/index.js",
   "typings": "dist/index.d.ts",
-  "scripts": {
-    "build-es": "tsc -p ./tsconfig.prod.json --outDir './dist/es' --module es2015",
-    "build-umd": "tsc -p ./tsconfig.prod.json",
+    "scripts": {
+    "build": "npm run build-es && npm run build-umd",
+    "build-es": "tsc -b ./tsconfig.json",
+    "build-umd": "tsc -p ./tsconfig.prod.json --outDir './dist/umd'",
     "lint": "tslint -p .",
     "typecheck": "tsc -p . --noEmit",
     "test": "jest"
@@ -30,6 +31,9 @@
   "dependencies": {
     "tshkt": "jkopanski/tshkt#241a34b"
   },
+  "files": [
+    "dist/"
+  ],
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node",

@@ -3,9 +3,6 @@
   "exclude": ["src/**/*test*.ts"],
   "compilerOptions": {
     "target": "es5",
-    "module": "umd",
-    "declaration": true,
-    "outDir": "./dist",
-    "sourceMap": true
+    "module": "umd"
   }
 }

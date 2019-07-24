@@ -1,16 +1,14 @@
 {
+  "extends": "../../tsconfig.json",
+
   "include": ["src/**/*.ts"],
+
   "compilerOptions": {
     "target": "es2015",
     "moduleResolution": "node",
-    "strict": true
-    // This enables:
-    // noImplicitAny
-    // noImplicitThis
-    // alwaysStrict
-    // strictBindCallApply
-    // strictNullChecks
-    // strictFunctionTypes
-    // strictPropertyInitialization
+    "module": "es2015",
+
+    "outDir": "dist",
+    "rootDir": "src",
   }
 }
