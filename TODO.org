@@ -3,9 +3,25 @@
 *** DONE Semigroup
 *** TODO Monoid
 *** TODO Category
-*** TODO Arrow
+*** DONE Arrow
+    Looking at [[https://pursuit.purescript.org/packages/purescript-profunctor][purescript]] typeclass hierarchy, they don't define ~Arrow~
+    based class. Instead they use ~Profunctor~ as the base for arrow
+    combinators.
 *** TODO Covariant
 *** TODO Profunctor
+**** TODO Choice
+**** TODO Closed
+**** TODO Clown
+**** TODO Join
+**** TODO Joker
+**** TODO Split
+**** TODO Star
+**** TODO Strong
+**** TODO Wrap
+**** TODO Cochoice
+**** TODO Costar
+**** TODO Costrong
+**** TODO Cowrap
 *** TODO Strong
 *** TODO Choice
 ** Implementations
