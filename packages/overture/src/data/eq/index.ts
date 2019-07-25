@@ -24,10 +24,6 @@ Number.prototype.eq = function (n: number) {
   return this.valueOf() === n
 }
 
-String.prototype.eq = function (s: string) {
-  return this.valueOf() === s
-}
-
 Boolean.prototype.eq = function (b: boolean) {
   return this.valueOf() === b
 }
@@ -35,10 +31,6 @@ Boolean.prototype.eq = function (b: boolean) {
 declare global {
   interface Number {
     eq (n: number): boolean
-  }
-
-  interface String {
-    eq (s: string): boolean
   }
 
   interface Boolean {

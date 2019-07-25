@@ -44,7 +44,7 @@ export default function laws<A extends Ord<A>> (
       assert(
         property(
           arbA, arbA, (x, y) => expect(
-            max(x, y).eq(lessEq(x, y) ? x : y)
+            max(x, y).eq(moreEq(x, y) ? x : y)
           ).toBe(true)
         )
       )
@@ -54,7 +54,7 @@ export default function laws<A extends Ord<A>> (
       assert(
         property(
           arbA, arbA, (x, y) => expect(
-            min(x, y).eq(moreEq(x, y) ? x : y)
+            min(x, y).eq(lessEq(x, y) ? x : y)
           ).toBe(true)
         )
       )

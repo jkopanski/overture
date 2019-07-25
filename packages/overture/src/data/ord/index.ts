@@ -122,5 +122,11 @@ export function max<A extends Ord<A>> (a: A, b: A): A {
  * Prefer left one in case of equality.
  */
 export function min<A extends Ord<A>> (a: A, b: A): A {
-  return b.compare(a).eq(LT) ? a : a
+  return b.compare(a).eq(LT) ? b : a
+}
+
+export function toOrdering (n: number): Ordering {
+  return n === 0
+    ? EQ
+    : n < 0 ? LT : GT
 }
