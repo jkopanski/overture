@@ -1,7 +1,7 @@
 * Overture
 ** Classes
 *** DONE Semigroup
-*** TODO Monoid
+*** DONE Monoid
 *** TODO Category
 *** DONE Arrow
     Looking at [[https://pursuit.purescript.org/packages/purescript-profunctor][purescript]] typeclass hierarchy, they don't define ~Arrow~
@@ -22,8 +22,8 @@
 **** TODO Costar
 **** TODO Costrong
 **** TODO Cowrap
-*** TODO Strong
-*** TODO Choice
+**** TODO Strong
+**** TODO Choice
 ** Implementations
 *** TODO Data.Array
 *** TODO Data.Text
