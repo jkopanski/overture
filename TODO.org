@@ -25,6 +25,8 @@
 *** TODO Strong
 *** TODO Choice
 ** Implementations
+*** TODO Data.Array
+*** TODO Data.Text
 *** TODO Data.Remote
 * Doable
   ~do~ notation for overture.
