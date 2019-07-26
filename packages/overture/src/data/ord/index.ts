@@ -1,5 +1,6 @@
 import { Eq } from "../eq"
 import { Show } from "../show"
+import { Void } from "../void"
 
 /**
  * Type that is a result of comparison from [[Ord]] interface.
@@ -78,6 +79,8 @@ export const GT: Ordering = new GreaterThan()
 export interface Ord<A> extends Eq<A> {
   compare (this: A, other: A): Ordering
 }
+
+export type HasOrd<A> = A extends Ord<A> ? A : Void
 
 /**
  * Test if `a` is less than `b`.
