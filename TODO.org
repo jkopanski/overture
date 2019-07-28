@@ -28,6 +28,12 @@
 **** TODO Strong
 **** TODO Choice
 ** Implementations
+*** TODO Data.Tuple
+    Right now I don't know how to implement ~Applicative~ and
+    ~Monad~ for ~Tuple<A, B>~ as that requires ~Monoid~ for type
+    paameter ~A~. This itself isn't that hard, but the problem is
+    in ~static~ member ~pure~. In that function I don't have access
+    to any reference of type ~A~ to call it's ~mempty~ method.
 *** TODO Data.Array
 *** DONE Data.Text
 *** TODO Data.Remote
