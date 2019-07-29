@@ -7,7 +7,6 @@ import {
 
 import { Fun } from "../../function"
 import { Monoid } from "../../monoid"
-import { Semigroup } from "../../semigroup"
 
 import { Contravariant } from "."
 
@@ -17,7 +16,6 @@ import { Contravariant } from "."
  */
 export class Predicate<A>
   implements Contravariant<PredicateF, A>,
-    Semigroup<Predicate<A>>,
     Monoid<Predicate<A>> {
       [Generic.Type1]: Generic1<PredicateF, A>
       ["constructor"]: typeof Predicate
