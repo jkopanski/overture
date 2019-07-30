@@ -1,23 +1,25 @@
 import { Arbitrary, assert, property } from "fast-check"
 
-import { Eq } from "../eq"
+import { Equivalence } from "../functor/contravariant/equivalence"
+import { tuple } from "../tuple"
 
 import { Semigroup, append } from "."
 
-interface ComparableSemigroup<A> extends Semigroup<A>, Eq<A> {}
-
-export default function laws<A extends ComparableSemigroup<A>> (
-  arbA: Arbitrary<A>
+export default function laws<A extends Semigroup<A>> (
+  arbA: Arbitrary<A>,
+  equiv: (a: A) => Equivalence<A>
 ) {
   describe("Semigroup laws", () => {
     test("associativity", () => {
       assert(
         property(
-          arbA, arbA, arbA, (x, y, z) => expect(
-            append(append(x, y), z).eq(
+          arbA, arbA, arbA, arbA, (x, y, z, a) => {
+            const eq = equiv(a).get()
+            expect(eq(tuple(
+              append(append(x, y), z),
               append(x, append(y, z))
-            )
-          ).toBe(true)
+            ))).toBe(true)
+          }
         )
       )
     })

@@ -8,9 +8,6 @@
     based class. Instead they use ~Profunctor~ as the base for arrow
     combinators.
 *** DONE Contravariant
-**** DONE Predicate
-**** TODO Comparison
-**** TODO Equivalence
 *** TODO Profunctor
 **** TODO Choice
 **** TODO Closed
@@ -37,6 +34,10 @@
 *** TODO Data.Array
 *** DONE Data.Text
 *** TODO Data.Remote
+*** Data.Functor.Contravariant
+**** DONE Predicate
+**** TODO Comparison
+**** DONE Equivalence
 * Doable
   ~do~ notation for overture.
 ** DONE Await

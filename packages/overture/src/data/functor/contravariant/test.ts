@@ -8,7 +8,7 @@ import { Fun } from "../../function"
 import { Tuple, tuple } from "../../tuple"
 
 import contravariant from "./laws"
-// import semigroup from "../../semigroup/laws"
+import semigroup from "../../semigroup/laws"
 // import monoid from "../../monoid/laws"
 
 import { append } from "../../semigroup"

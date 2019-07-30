@@ -53,7 +53,7 @@ interface EquivalenceF extends TypeFamily<Kind1> {
   (): Equivalence<this[0]>
 }
 
-function getDefaultEquivalence<A extends Eq<A>> () {
+export function getDefaultEquivalence<A extends Eq<A>> () {
   return new Equivalence((
     (a: Tuple<A, A>) => a.fst.eq(a.snd)
   ) as Fun<Tuple<A, A>, boolean>)
@@ -61,5 +61,7 @@ function getDefaultEquivalence<A extends Eq<A>> () {
 
 // this infers `Equivalence<Eq<unknown>>`
 // I wonder if this unknown will prove to be triublesome
-// in the future
-export const defaultEquivalence = getDefaultEquivalence()
+// in the future.
+// Yeah,
+// Typescript is not able to infer properly from that formulation.
+// export const defaultEquivalence = getDefaultEquivalence()
