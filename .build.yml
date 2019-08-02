@@ -4,7 +4,7 @@ packages:
   - nixpkgs.nodePackages.lerna
   - nixpkgs.nodePackages.yarn
 repositories:
-  - nixpkgs: https://nixos.org/channels/nixos-19.03
+  nixpkgs: https://nixos.org/channels/nixos-19.03
 sources:
   - https://git.sr.ht/~madnat/overture
 tasks:
