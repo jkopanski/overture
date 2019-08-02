@@ -16,6 +16,6 @@ export interface Category<F, A, B> extends Semigroupoid<F, A, B> {
   constructor: Identity<F>
 }
 
-export interface IsCategory<F> extends TypeFamily<Kind2> {
+export interface IsCategory<F> extends TypeFamily<Kind2> {
   (): Category<F, this[0], this[1]>
 }
