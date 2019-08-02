@@ -3,7 +3,7 @@
 *** DONE Semigroup
 *** DONE Monoid
 *** DONE Semigroupoid
-*** TODO Category
+*** DONE Category
 *** DONE Arrow
     Looking at [[https://pursuit.purescript.org/packages/purescript-profunctor][purescript]] typeclass hierarchy, they don't define ~Arrow~
     based class. Instead they use ~Profunctor~ as the base for arrow

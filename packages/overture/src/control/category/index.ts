@@ -1,11 +1,12 @@
 import {
   Kind2,
+  Of2,
   TypeFamily
 } from "tshkt"
 import { Semigroupoid } from "../semigroupoid";
 
 export interface Identity<F> {
-  id<A, B> (): Category<F, A, B>
+  id<A, B> (): Of2<F, A, B>
 }
 
 /**
