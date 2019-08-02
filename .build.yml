@@ -1,0 +1,19 @@
+image: nixos/19.03
+packages:
+  - nixpkgs.nodejs-10_x
+  - nixpkgs.nodePackages.lerna
+  - nixpkgs.nodePackages.yarn
+repositories:
+  - nixpkgs: https://nixos.org/channels/nixos-19.03
+sources:
+  - https://git.sr.ht/~madnat/overture
+tasks:
+  - setup: |
+      cd overture
+      nix-shell --command 'lerna bootstrap'
+  - test: |
+      cd overture
+      nix-shell --command 'lerna run test'
+  - build: |
+      cd overture
+      nix-shell --command 'lerna run build'
