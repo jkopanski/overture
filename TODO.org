@@ -4,10 +4,16 @@
 *** DONE Monoid
 *** DONE Semigroupoid
 *** DONE Category
-*** DONE Arrow
+*** TODO Arrow
     Looking at [[https://pursuit.purescript.org/packages/purescript-profunctor][purescript]] typeclass hierarchy, they don't define ~Arrow~
     based class. Instead they use ~Profunctor~ as the base for arrow
     combinators.
+
+    PureScript approach requires to put 2 constraints on type constructor.
+    This is not possible in TypeScript. Instead I have to create new interface
+    that extends all the required ones. So If I have to do it I might as well
+    call it ~Arrow~. To make it /zero cost/ those interfaces will be empty,
+    and used to enforce appropriate ~Profunctor~ and ~Category~.
 *** DONE Contravariant
 *** TODO Profunctor
 **** TODO Choice
