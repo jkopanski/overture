@@ -1,8 +1,8 @@
 {
   "files": [],
-  "include": [],
   "references": [
     { "path": "./doable" },
-      { "path": "./overture" }
+    { "path": "./overture" },
+    { "path": "./sproc" }
   ]
 }
