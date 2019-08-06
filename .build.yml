@@ -1,5 +1,6 @@
 image: nixos/19.03
 packages:
+  - nixpkgs.git
   - nixpkgs.nodejs-10_x
   - nixpkgs.nodePackages.lerna
   - nixpkgs.nodePackages.yarn
@@ -7,6 +8,8 @@ repositories:
   nixpkgs: https://nixos.org/channels/nixos-19.03
 sources:
   - https://git.sr.ht/~madnat/overture
+secrets:
+  - 46baea72-197f-4480-8325-ad536572dff0
 tasks:
   - setup: |
       cd overture
@@ -17,3 +20,7 @@ tasks:
   - build: |
       cd overture
       nix-shell --command 'lerna run build'
+  - mirror: |
+      cd overture
+      git remote add github https://jkopanski@github.com/jkopanski/overture.git
+      echo ~/.github_access_token > git push --prune github '+refs/remotes/origin/*:refs/heads/*' '+refs/tags/*:refs/tags/*'
