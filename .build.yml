@@ -22,5 +22,6 @@ tasks:
       nix-shell --command 'lerna run build'
   - mirror: |
       cd overture
-      git remote add github https://jkopanski@github.com/jkopanski/overture.git
+      git remote add github https://github.com/jkopanski/overture.git
+      git config credential.helper store
       git push --prune github '+refs/remotes/origin/*:refs/heads/*' '+refs/tags/*:refs/tags/*'
