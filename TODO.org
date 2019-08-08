@@ -32,8 +32,6 @@
 **** TODO Costar
 **** TODO Costrong
 **** TODO Cowrap
-**** TODO Strong
-**** TODO Choice
 ** Implementations
 *** TODO Data.Tuple
     Right now I don't know how to implement ~Applicative~ and
