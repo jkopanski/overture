@@ -15,7 +15,8 @@ export interface Alt<F, A> extends Functor<F, A> {
 }
 
 /**
- * Interface used to assert that type `F` is implementing [[Alt]] interface.
+ * Interface used to assert that Higher Kinded Type `F`
+ * is implementing [[Alt]] interface, for any type `A`.
  *
  * Use it like:
  * ```

@@ -8,6 +8,16 @@ export interface Semigroupoid<F, J, K> {
   compose<I> (this: Of2<F, J, K>, f: Of2<F, I, J>): Of2<F, I, K>
 }
 
+/**
+ * Interface used to assert that Higher Kinded Type `F`
+ * is implementing [[Semigroupoid]] interface, for any type `A`.
+ *
+ * Use it like:
+ * ```
+ * function func <F extends IsSemigroupoid<F>, A>(fa: Of<F, A>) {}
+ * ```
+ * to denote that fuction will take any `Semigroupoid`.
+ */
 export interface IsSemigroupoid<F> extends TypeFamily<Kind2> {
   (): Semigroupoid<F, this[0], this[1]>
 }

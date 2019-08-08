@@ -16,8 +16,8 @@ export interface Alternative<F, A>
 }
 
 /**
- * Interface used to assert that type `F` is
- * implementing [[Alternative]] interface.
+ * Interface used to assert that Higher Kinded Type `F`
+ * is implementing [[Alternative]] interface, for any type `A`.
  *
  * Use it like:
  * ```

@@ -12,7 +12,18 @@ export interface Bind<F, A> extends Apply<F, A> {
   bind<B> (this: Of<F, A>, f: Fun<A, Of<F, B>>): Of<F, B>
 }
 
+/**
+ * Interface used to assert that Higher Kinded Type `F`
+ * is implementing [[Bind]] interface, for any type `A`.
+ *
+ * Use it like:
+ * ```
+ * function func <F extends IsBind<F>, A>(fa: Of<F, A>) {}
+ * ```
+ * to denote that fuction will take any `Bind`.
+ */
 export interface IsBind<F> extends TypeFamily<Kind1> {
+  /** @ignore */
   (): Bind<F, this[0]>
 }
 

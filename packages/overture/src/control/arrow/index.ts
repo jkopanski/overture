@@ -16,7 +16,18 @@ export interface Arrow<F, A, B>
   extends Category<F, A, B>,
     Profunctor<F, A, B> {}
 
+/**
+ * Interface used to assert that Higher Kinded Type `F`
+ * is implementing [[Arrow]] interface, for any type `A`.
+ *
+ * Use it like:
+ * ```
+ * function func <F extends IsArrom<F>, A>(fa: Of<F, A>) {}
+ * ```
+ * to denote that fuction will take any `Arrow`.
+ */
 export interface IsArrow<F> extends TypeFamily<Kind2> {
+  /** @ignore */
   (): Arrow<F, this[0], this[1]>
 }
 

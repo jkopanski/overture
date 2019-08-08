@@ -20,7 +20,18 @@ export interface MonadZero<F, A>
     constructor: Pure<F> & Empty<F>
 }
 
+/**
+ * Interface used to assert that Higher Kinded Type `F`
+ * is implementing [[MonadZero]] interface, for any type `A`.
+ *
+ * Use it like:
+ * ```
+ * function func <F extends IsMonadZero<F>, A>(fa: Of<F, A>) {}
+ * ```
+ * to denote that fuction will take any `MonadZero`.
+ */
 export interface IsMonadZero<F> extends TypeFamily<Kind1> {
+  /** @ignore */
   (): MonadZero<F, this[0]>
 }
 

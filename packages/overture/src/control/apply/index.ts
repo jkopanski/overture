@@ -16,7 +16,18 @@ export interface Apply<F, A> extends Functor<F, A> {
   apply<B> (this: Of<F, A>, f: Of<F, Fun<A, B>>): Of<F, B>
 }
 
+/**
+ * Interface used to assert that Higher Kinded Type `F`
+ * is implementing [[Apply]] interface, for any type `A`.
+ *
+ * Use it like:
+ * ```
+ * function func <F extends IsApply<F>, A>(fa: Of<F, A>) {}
+ * ```
+ * to denote that fuction will take any `Apply`.
+ */
 export interface IsApply<F> extends TypeFamily<Kind1> {
+  /** @ignore */
   (): Apply<F, this[0]>
 }
 
