@@ -15,6 +15,18 @@ export interface Alternative<F, A>
     constructor: Pure<F> & Empty<F>
 }
 
+/**
+ * Interface used to assert that type `F` is
+ * implementing [[Alternative]] interface.
+ *
+ * Use it like:
+ * ```
+ * function func <F extends IsAlternative<F>, A>(fa: Of<F, A>) {}
+ * ```
+ * to denote that fuction will take any `Alternative`.
+ */
+
 export interface IsAlternative<F> extends TypeFamily<Kind1> {
+  /** @ignore */
   (): Alternative<F, this[0]>
 }

@@ -14,6 +14,16 @@ export interface Alt<F, A> extends Functor<F, A> {
   alt (this: Of<F, A>, fa: Of<F, A>): Of<F, A>
 }
 
+/**
+ * Interface used to assert that type `F` is implementing [[Alt]] interface.
+ *
+ * Use it like:
+ * ```
+ * function func <F extends IsAlt<F>, A>(fa: Of<F, A>) {}
+ * ```
+ * to denote that fuction will take any `Alt`.
+ */
 export interface IsAlt<F> extends TypeFamily<Kind1> {
+  /** @ignore */
   (): Alt<F, this[0]>
 }
