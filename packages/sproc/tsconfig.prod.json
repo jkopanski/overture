@@ -3,6 +3,16 @@
   "exclude": ["src/**/*test*.ts"],
   "compilerOptions": {
     "target": "es5",
-    "module": "umd"
-  }
+    "module": "umd",
+
+    "outDir": "dist/umd",
+
+    "baseUrl": "./",
+    "paths": {
+      "@famisoft/overture/*": [ "../overture/src/*" ]
+    }
+  },
+  "references": [
+    { "path": "../overture" }
+  ]
 }
