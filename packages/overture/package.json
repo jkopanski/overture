@@ -9,6 +9,7 @@
     "build": "npm run build-es && npm run build-umd",
     "build-es": "tsc -b ./tsconfig.json",
     "build-umd": "tsc -p ./tsconfig.prod.json --outDir './dist/umd'",
+    "doc": "typedoc",
     "lint": "tslint -p .",
     "typecheck": "tsc -p . --noEmit",
     "test": "jest"
