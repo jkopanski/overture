@@ -1,7 +1,0 @@
-#+TITLE: Overture
-#+AUTHOR: Jakub Kopański
-
-* Acknowledgement
-[[https://github.com/strax][Sami Kukkonen (strax)]] made incredible breakthrough in encoding Higher-Kinded Types in TypeScript.
-This project exists because of the possibilities that his [[https://github.com/strax/tshkt][library]] gave TypeScript,
-go check it out!

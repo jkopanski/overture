@@ -1,5 +1,6 @@
 {
   "mode": "modules",
   "out": "../../docs/overture",
-  "exclude": "*.test*"
+  "exclude": "*.test*",
+  "readme": "README.md"
 }
