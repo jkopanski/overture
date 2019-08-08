@@ -4,6 +4,9 @@
 *** DONE Monoid
 *** DONE Semigroupoid
 *** DONE Category
+*** DONE Lazy
+    Lazy interface definition and lazy list example are done.
+    Not sure how to implement and use ~fix~.
 *** TODO Arrow
     Looking at [[https://pursuit.purescript.org/packages/purescript-profunctor][purescript]] typeclass hierarchy, they don't define ~Arrow~
     based class. Instead they use ~Profunctor~ as the base for arrow

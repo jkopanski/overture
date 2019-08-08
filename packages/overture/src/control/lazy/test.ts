@@ -1,6 +1,6 @@
 import { Fun } from "../../data/function"
 import { Unit } from "../../data/unit"
-import { Lazy, fix } from "."
+import { Lazy } from "."
 
 abstract class List<T>
   implements Lazy<List<T>> {
@@ -65,8 +65,18 @@ const take = <T>(n: number, list: List<T>): Array<T> => {
   return acc
 }
 
+const deferF = {
+  defer: <A, B>(f: Fun<Unit, Fun<A, B>>) =>
+    (a: A) => f()(a)
+}
+
 // const naturals = fix(
-//   ((l: List<number>) => l.fork({
+//   (l: Fun<number, List<number>>) =>
+//     (start: number) =>
+//       cons(start, l(start + 1)),
+//   deferF
+// )(2)
+
 //     nil: () => cons(0, l),
 //     cons: (h, _) => cons(h + 1, l)
 //   })) as Fun<List<number>, List<number>>,

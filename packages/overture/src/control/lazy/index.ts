@@ -12,15 +12,13 @@ export interface Lazy<A> {
   constructor: Defer<A>
 }
 
-export function fix<L extends Lazy<L>> (
-  f: Fun<L, L>,
-  l: Defer<L>
-): L {
-  function go (): L {
-    return l.defer((
-      _ => f(go())
-    ) as Fun<Unit, L>)
-  }
-
-  return go()
-}
+// export function fix<L extends Lazy<L>> (
+//   f: Fun<L, L>,
+//   l: Defer<L>
+// ): L {
+//   return (function
+//     return l.defer(
+//       _ => go(f(i))
+//     ) as Fun<Unit, L>)
+//   })(init?)
+// }
