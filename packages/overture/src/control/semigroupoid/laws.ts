@@ -3,6 +3,15 @@ import { Of2 } from "tshkt"
 import { isDeepStrictEqual as eq } from "util"
 import { IsSemigroupoid, compose, pipe } from "."
 
+/**
+ * Each [[Semigroupoid]] has to satisfy the associativity law,
+ * regarding it's `compose` operation.
+ *
+ * - Associativity:
+ * ```typescript
+ * a.compose(b).compose(c) === a.compose(b.compose(c))
+ * ```
+ */
 export default function laws <
   F extends IsSemigroupoid<F>,
   A,
@@ -15,7 +24,7 @@ export default function laws <
   arbH: Arbitrary<Of2<F, A, B>>,
 ) {
   describe("Semigroupoid laws", () => {
-    test("a.compose(b).compose(c) === a.compose(b.compose(c))", () => {
+    test("associativity", () => {
       assert(
         property(
           arbF, arbG, arbH, (f, g, h) =>
