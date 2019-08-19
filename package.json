@@ -22,6 +22,6 @@
   },
   "resolutions": {
     "tshkt": "jkopanski/tshkt#241a34b",
-    "typescript": "^3.6.0-beta"
+    "typescript": "^3.6.1-rc"
   }
 }
