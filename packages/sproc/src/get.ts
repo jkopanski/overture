@@ -1,5 +1,6 @@
 import { Fun } from "@famisoft/overture/data/function"
 
+import { nil } from "./nil"
 import { SP, Fork } from "./proc"
 
 export class Get<A, B> extends SP<A, B> {
@@ -16,7 +17,8 @@ export class Get<A, B> extends SP<A, B> {
       put: (out, cont) => this.f(out).compose(cont),
       get: g => new Get((
         (c: C) => this.compose(g(c))
-      ) as Fun<C, SP<C, B>>)
+      ) as Fun<C, SP<C, B>>),
+      nil: nil as () => SP<C, B>
     })
   }
 

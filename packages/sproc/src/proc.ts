@@ -19,7 +19,8 @@ export interface SPKind extends TypeFamily<Kind2> {
 
 export interface Fork<A, B, C> {
   get: (f: (a: A) => SP<A, B>) => C,
-  put: (b: B, cont: SP<A, B>) => C
+  put: (b: B, cont: SP<A, B>) => C,
+  nil: () => C
 }
 
 export abstract class SP<A, B>
