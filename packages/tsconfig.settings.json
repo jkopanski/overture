@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "pretty": true,
+    "target": "esnext",
+    "module": "esnext",
+
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+
+    "preserveConstEnums": true,
+    "strict": true,
+    // This enables:
+    // noImplicitAny
+    // noImplicitThis
+    // alwaysStrict
+    // strictBindCallApply
+    // strictNullChecks
+    // strictFunctionTypes
+    // strictPropertyInitialization
+
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "noEmitOnError": true
+  }
+}

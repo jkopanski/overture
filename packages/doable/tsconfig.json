@@ -1,5 +1,5 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../tsconfig.settings.json",
 
   "include": [
     "src/**/*",
@@ -11,8 +11,10 @@
     "rootDir": "src",
     "outDir": "dist",
 
-    "moduleResolution": "node",
-    "preserveSymlinks": true
+    "baseUrl": "./",
+    "paths": {
+      "@famisoft/overture/*": [ "../overture/src/*" ]
+    }
   },
   "references": [
     { "path": "../overture" }

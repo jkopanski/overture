@@ -1,18 +1,14 @@
 {
   "extends": "./tsconfig.json",
-  "exclude": ["src/**/*test*.ts"],
+
   "compilerOptions": {
     "target": "es5",
     "module": "umd",
 
-    "outDir": "dist/umd",
-
-    "baseUrl": "./",
-    "paths": {
-      "@famisoft/overture/*": [ "../overture/src/*" ]
-    }
+    "outDir": "dist/umd"
   },
   "references": [
     { "path": "../overture" }
   ]
+
 }

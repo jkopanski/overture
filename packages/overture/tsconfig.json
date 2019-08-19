@@ -1,14 +1,10 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../tsconfig.settings.json",
 
   "include": ["src/**/*.ts"],
 
   "compilerOptions": {
-    "target": "es2015",
-    "moduleResolution": "node",
-    "module": "es2015",
-
     "outDir": "dist",
-    "rootDir": "src",
+    "rootDir": "src"
   }
 }

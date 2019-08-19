@@ -1,23 +1,8 @@
 {
-  "compilerOptions": {
-    "pretty": true,
-    "target": "esnext",
-
-    "preserveConstEnums": true,
-    "strict": true,
-    // This enables:
-    // noImplicitAny
-    // noImplicitThis
-    // alwaysStrict
-    // strictBindCallApply
-    // strictNullChecks
-    // strictFunctionTypes
-    // strictPropertyInitialization
-
-    "composite": true,
-    "declaration": true,
-    "declarationMap": true,
-    "sourceMap": true,
-    "noEmitOnError": true
-  }
+  "files": [],
+  "references": [
+    { "path": "./packages/doable" },
+    { "path": "./packages/overture" },
+    { "path": "./packages/sproc" }
+  ]
 }
