@@ -8,5 +8,8 @@ module.exports = {
   ...base,
   name: package.name,
   displayName: "Doable",
-  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths)
+  moduleNameMapper: pathsToModuleNameMapper(
+    compilerOptions.paths,
+    { prefix: "<rootDir>/" }
+  )
 };
