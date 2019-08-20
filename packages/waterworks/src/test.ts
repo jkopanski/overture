@@ -10,6 +10,9 @@ import { Tuple } from "@famisoft/overture/data/tuple"
 
 import categoryLaws from "@famisoft/overture/control/category/laws"
 import semigroupoidLaws from "@famisoft/overture/control/semigroupoid/laws"
+import profunctorLaws from "@famisoft/overture/data/profunctor/laws"
+
+import arbFun from "@famisoft/overture/data/function/arbitrary"
 
 import arbitrarySP from "./arbitrary"
 import { SP } from "./proc"
@@ -40,6 +43,13 @@ describe("Data.Stream.Proc", () => {
       SP,
       arbitrarySP<any, number>(integer(), 8),
       anything(),
+      eqSP
+    )
+    profunctorLaws(
+      arbitrarySP<number, string>(string(), 10),
+      integer(),
+      arbFun(integer()),
+      arbFun(string()),
       eqSP
     )
   })

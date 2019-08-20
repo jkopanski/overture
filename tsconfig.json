@@ -3,6 +3,6 @@
   "references": [
     { "path": "./packages/doable" },
     { "path": "./packages/overture" },
-    { "path": "./packages/sproc" }
+    { "path": "./packages/waterworks" }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "name": "@famisoft/sproc",
+  "name": "@famisoft/waterworks",
   "version": "0.0.1",
   "description": "Stream Procesors library.",
   "main": "dist/umd/index.js",

@@ -1,7 +1,7 @@
 #+TITLE: Sproc
 #+AUTHOR: Jakub Kopański
 
-* Stream Processors
+* Waterworks
 This is yet another library that allows dwaling with ~Streams~.
 Unlike others before it's main building type is /Stream Processor/,
 which can be thought of as function os type: ~(in$: Stream<A>) => Stream<B>~.

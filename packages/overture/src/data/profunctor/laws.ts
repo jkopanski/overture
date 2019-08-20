@@ -43,7 +43,7 @@ export default function laws<
           (pa, f1, f2, g1, g2, a) => {
             const eq = equiv(a).get()
             return expect(eq(tuple(
-              pa.dimap(f1, g1).dimap(f2, g2),
+              pa.dimap(f2, g2).dimap(f1, g1),
               pa.dimap(pipe(f1, f2), compose(g1, g2))
             ))).toBe(true)
           }

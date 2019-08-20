@@ -29,7 +29,7 @@ For detailed progress/roadmap take a look at [TODO](https://git.sr.ht/~madnat/ov
 
 Do notation for monads implemented as TypeScript transformer.
 
-### Sproc
+### Waterworks
 
 > In progress
 

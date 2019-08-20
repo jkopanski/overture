@@ -9,7 +9,7 @@ import { Unit } from "@famisoft/overture/data/unit"
 // import { Profunctor } from "@famisoft/overture/data/profunctor"
 import { Category } from "@famisoft/overture/control/category"
 import { Lazy } from "@famisoft/overture/control/lazy"
-import { Semigroupoid } from "@famisoft/overture/control/semigroupoid"
+import { Semigroupoid, compose } from "@famisoft/overture/control/semigroupoid"
 // import { Category } from "@famisoft/overture/control/category"
 
 import "@famisoft/overture/data/function"
@@ -55,11 +55,11 @@ export abstract class SP<A, B>
 
       abstract fork<C> (f: Fork<A, B, C>): C
 
-      // abstract dimap<C, D> (
-      //   this: SP<A, B>,
-      //   f: Fun<C, A>,
-      //   g: Fun<B, D>
-      // ): SP<C, D>
+      abstract dimap<C, D> (
+        this: SP<A, B>,
+        f: Fun<C, A>,
+        g: Fun<B, D>
+      ): SP<C, D>
 
       abstract compose<C> (
         this: SP<A, B>,
@@ -86,13 +86,13 @@ export class Get<A, B> extends SP<A, B> {
     })
   }
 
-  // dimap<C, D> (f: Fun<C, A>, g: Fun<B, D>): SP<C, D> {
-  //   return new Get(pipe(
-  //     f,
-  //     this.f
-  //   ))
-  // }
-
+  dimap<C, D> (f: Fun<C, A>, g: Fun<B, D>): SP<C, D> {
+    return get((
+      (c: C) => SP.defer((
+        _ => this.f(f(c)).dimap(f, g)
+      ) as Fun<Unit, SP<C, D>>)
+    ) as Fun<C, SP<C, D>>)
+  }
 }
 
 /**
@@ -118,9 +118,12 @@ export class Put<A, B> extends SP<A, B> {
     return new Put(this.value, this.cont.compose(sp))
   }
 
-  // dimap<C, D> (f: Fun<C, A>, g: Fun<B, D>): SP<C, D> {
-  //   return
-  // }
+  dimap<C, D> (f: Fun<C, A>, g: Fun<B, D>): SP<C, D> {
+    return put(
+      g(this.value),
+      SP.defer((_ => this.cont.dimap(f, g)) as Fun<Unit, SP<C, D>>)
+    )
+  }
 }
 
 /**
@@ -140,6 +143,10 @@ export class Nil<A, B> extends SP<A, B> {
   }
 
   compose<C> (this: Nil<A, B>, _sp: SP<C, A>): SP<C, B> {
+    return nil()
+  }
+
+  dimap<C, D> (_f: Fun<C, A>, _g: Fun<B, D>): SP<C, D> {
     return nil()
   }
 }

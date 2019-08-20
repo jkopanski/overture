@@ -7,7 +7,7 @@ const { compilerOptions } = require("./tsconfig");
 module.exports = {
   ...base,
   name: package.name,
-  displayName: "Stream Processors",
+  displayName: "Waterworks",
   moduleNameMapper: pathsToModuleNameMapper(
     compilerOptions.paths,
     { prefix: "<rootDir>/" }
