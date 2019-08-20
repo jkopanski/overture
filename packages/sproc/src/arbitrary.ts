@@ -6,10 +6,7 @@ import {
 import { Fun } from "@famisoft/overture/data/function"
 import { Unit } from "@famisoft/overture/data/unit"
 
-import { SP } from "./proc"
-import { nil } from "./nil"
-import { get } from "./get"
-import { put } from "./put"
+import { SP, get, nil, put } from "./proc"
 
 class ProcArbitrary<A, B> extends Arbitrary<SP<A, B>> {
   constructor (

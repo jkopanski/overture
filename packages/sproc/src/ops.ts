@@ -2,9 +2,7 @@ import { Fun } from "@famisoft/overture/data/function"
 import { Tuple, tuple } from "@famisoft/overture/data/tuple"
 import { Unit } from "@famisoft/overture/data/unit"
 
-import { SP } from "./proc"
-import { get } from "./get"
-import { put } from "./put"
+import { SP, get, put } from "./proc"
 
 // TODO: make this more general, e.g.:
 // export function run<

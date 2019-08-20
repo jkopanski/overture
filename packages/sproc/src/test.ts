@@ -8,6 +8,7 @@ import { Equivalence } from "@famisoft/overture/data/functor/contravariant/equiv
 import { Fun } from "@famisoft/overture/data/function"
 import { Tuple } from "@famisoft/overture/data/tuple"
 
+import categoryLaws from "@famisoft/overture/control/category/laws"
 import semigroupoidLaws from "@famisoft/overture/control/semigroupoid/laws"
 
 import arbitrarySP from "./arbitrary"
@@ -31,6 +32,12 @@ describe("Data.Stream.Proc", () => {
     semigroupoidLaws(
       arbitrarySP<string, number>(integer(), 4),
       arbitrarySP<number, string>(string(), 10),
+      arbitrarySP<any, number>(integer(), 8),
+      anything(),
+      eqSP
+    )
+    categoryLaws(
+      SP,
       arbitrarySP<any, number>(integer(), 8),
       anything(),
       eqSP
