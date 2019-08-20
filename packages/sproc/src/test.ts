@@ -1,18 +1,39 @@
 import {
+  anything,
   string,
   integer
 } from "fast-check"
+import { isDeepStrictEqual as eq } from "util"
+import { Equivalence } from "@famisoft/overture/data/functor/contravariant/equivalence"
+import { Fun } from "@famisoft/overture/data/function"
+import { Tuple } from "@famisoft/overture/data/tuple"
+
 import semigroupoidLaws from "@famisoft/overture/control/semigroupoid/laws"
 
-// import arbitrarySP from "./arbitrary"
+import arbitrarySP from "./arbitrary"
+import { SP } from "./proc"
+import { run } from "./ops"
+
+const eqSP = <A, B>(a: A) => {
+  // TODO: make length random as well?
+  const len = 5
+  const input = new Array(len)
+  input.fill(a)
+
+  return new Equivalence<SP<A, B>>((sps => eq(
+    run(sps.fst, input),
+    run(sps.snd, input)
+  )) as Fun<Tuple<SP<A, B>, SP<A, B>>, boolean>)
+}
 
 describe("Data.Stream.Proc", () => {
-  test("Finite Stream Processor", () => {
-    expect(true).toBe(true)
-    // semigroupoidLaws(
-    //   arbitrarySP<string, number>(integer(), 4),
-    //   arbitrarySP<number, string>(string(), 10),
-    //   arbitrarySP<any, number>(integer(), 2)
-    // )
+  describe("Finite Stream Processor", () => {
+    semigroupoidLaws(
+      arbitrarySP<string, number>(integer(), 4),
+      arbitrarySP<number, string>(string(), 10),
+      arbitrarySP<any, number>(integer(), 8),
+      anything(),
+      eqSP
+    )
   })
 })

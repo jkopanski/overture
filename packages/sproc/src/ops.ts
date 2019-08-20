@@ -1,9 +1,36 @@
 import { Fun } from "@famisoft/overture/data/function"
+import { Tuple, tuple } from "@famisoft/overture/data/tuple"
 import { Unit } from "@famisoft/overture/data/unit"
 
 import { SP } from "./proc"
 import { get } from "./get"
 import { put } from "./put"
+
+// TODO: make this more general, e.g.:
+// export function run<
+//   A, B,
+//   F extends IsMonoid<F>
+// > (
+//   sp: SP<A, B>,
+//   input: Generator<A>
+// ): Of<F, A>
+// TODO: stacksafety
+export function run<A, B> (
+  sp: SP<A, B>,
+  input: Array<A>
+): Array<B> {
+  return input.length === 0
+    ? []
+    : sp.fork({
+      put: (b, cont) =>
+        [b].concat(run(cont, input)),
+      get: f => {
+        const [a, ...tail] = input
+        return run(f(a), tail)
+      },
+      nil: () => ([])
+    })
+}
 
 export function identity<A> (): SP<A, A> {
   return get((
