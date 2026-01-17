@@ -1,0 +1,9 @@
+name: overture
+depend: standard-library
+include: src
+
+flags:
+  --safe
+  --cubical-compatible
+  --exact-split
+  -WnoUnsupportedIndexedMatch
