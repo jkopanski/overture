@@ -1,0 +1,10 @@
+#+title: Overture - Convenience wrapper over Agda Standard Library
+
+When working with Agda I've ended up using a lot the same imports
+across most of my modules.  Furthermore I have a preference for
+qualified imports.  This library is convenience for me to share across
+my projects.  It was inspired by the code that is saw in
+[[https://github.com/taktoa/wasm-agda/blob/master/WebAssembly.agda][taktoa/wasm-agda]].  It uses a technique that I believe is common in
+OCaml/Coq where the main type of the module is named as =t=.  So for
+example the type =List= from module =Data.List= is renamed to =t= and it is
+expected to be used qualified as =List.t=
