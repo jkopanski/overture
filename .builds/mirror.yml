@@ -1,0 +1,11 @@
+image: alpine/edge
+secrets:
+  - 51090f87-0ec9-40bb-b35f-8c882924eeca
+environment:
+  REPO: overture
+  GH_USER: jkopanski
+tasks:
+  - push-to-github: |
+      cd ~/"${REPO}"
+      git config --global credential.helper store
+      git push --mirror "https://github.com/${GH_USER}/${REPO}"
