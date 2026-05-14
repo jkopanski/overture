@@ -203,3 +203,8 @@ module Func where
   open import Function.Relation.Binary.Setoid.Equality public
 
 open Func using (_⟨$⟩_; _⟶ₛ_; _⇨_) public
+
+module Varying where
+  open import Function.Varying.Base renaming (Varying to t; Varyingₛ to tₛ) public
+  import Function.Varying.Domain as Dom renaming (Bundle to t)
+  module Domain = Dom
