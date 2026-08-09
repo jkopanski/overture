@@ -54,79 +54,24 @@ module ℕ where
   open import Data.Nat.Show              public
   open import Data.Irrelevant
   open ≤-Reasoning
-  open Rel₀ using (no; yes)
-
-  m∸[n∸o]≡m∸n+o : ∀ {m n o} → n ≤ m → o ≤ n → m ∸ (n ∸ o) ≡ (m ∸ n) + o
-  m∸[n∸o]≡m∸n+o {m}     {zero}  {zero}  z≤n       _   = sym (+-identityʳ m)
-  m∸[n∸o]≡m∸n+o {suc m} {suc n} {zero}  (s≤s n≤m) z≤n = sym (+-identityʳ (m ∸ n))
-  m∸[n∸o]≡m∸n+o {suc m} {suc n} {suc o} (s≤s n≤m) (s≤s o≤n)
-    rewrite +-suc (m ∸ n) o
-          | +-∸-assoc 1 (≤-trans (m∸n≤m n o) n≤m)
-          = cong suc (m∸[n∸o]≡m∸n+o n≤m o≤n)
-
-  m⊔n≡m∸n+n : ∀ m n → m ⊔ n ≡ m ∸ n + n
-  m⊔n≡m∸n+n zero    n       rewrite 0∸n≡0 n         = refl
-  m⊔n≡m∸n+n (suc m) zero    rewrite +-identityʳ m   = refl
-  m⊔n≡m∸n+n (suc m) (suc n) rewrite +-suc (m ∸ n) n = cong suc (m⊔n≡m∸n+n m n)
-
-  m∸n≤m⊔n : ∀ m n → m ∸ n ≤ m ⊔ n
-  m∸n≤m⊔n m n = ≤-trans (m∸n≤m m n) (m≤m⊔n m n)
-
-  m⊔n∸[m∸n]≡n : ∀ m n → m ⊔ n ∸ (m ∸ n) ≡ n
-  m⊔n∸[m∸n]≡n zero    n       rewrite 0∸n≡0 n             = refl
-  m⊔n∸[m∸n]≡n (suc m) zero                                = n∸n≡0 m
-  m⊔n∸[m∸n]≡n (suc m) (suc n) rewrite +-∸-assoc 1 (m∸n≤m⊔n m n) = cong suc (m⊔n∸[m∸n]≡n m n)
 
   m⊔n∸m⊓n≡∣m-n∣ : ∀ m n → m ⊔ n ∸ m ⊓ n ≡ ∣ m - n ∣
-  m⊔n∸m⊓n≡∣m-n∣ m n with ≤-total m n
-  … | ⊎.inj₁ m≤n
-    rewrite m≤n⇒m⊔n≡n m≤n
-          | m≤n⇒m⊓n≡m m≤n
-          | m≤n⇒∣m-n∣≡n∸m m≤n
-          = refl
-  … | ⊎.inj₂ n≤m
-    rewrite m≥n⇒m⊔n≡m n≤m
-          | m≥n⇒m⊓n≡n n≤m
-          | m≤n⇒∣n-m∣≡n∸m n≤m
-          = refl
+  m⊔n∸m⊓n≡∣m-n∣ m n = sym (∣m-n∣≡m⊔n∸m⊓n m n)
 
   m⊔n∸∣m-n∣≡m⊓n : ∀ m n → m ⊔ n ∸ ∣ m - n ∣ ≡ m ⊓ n
-  m⊔n∸∣m-n∣≡m⊓n m n
-    rewrite sym (m⊔n∸m⊓n≡∣m-n∣ m n) = {!!}
-  -- with ≤-total m n
-  -- … | ⊎.inj₁ m≤n
-  --   rewrite m≤n⇒m⊔n≡n m≤n
-  --         | m≤n⇒m⊓n≡m m≤n
-  --         | m≤n⇒∣m-n∣≡n∸m m≤n
-  --         = m∸[m∸n]≡n m≤n
-  -- … | ⊎.inj₂ n≤m
-  --   rewrite m≥n⇒m⊔n≡m n≤m
-  --         | m≥n⇒m⊓n≡n n≤m
-  --         | m≤n⇒∣n-m∣≡n∸m n≤m
-  --         = m∸[m∸n]≡n n≤m
+  m⊔n∸∣m-n∣≡m⊓n m n = begin-equality
+    m ⊔ n ∸ ∣ m - n ∣       ≡⟨ cong (m ⊔ n ∸_) (∣m-n∣≡m⊔n∸m⊓n m n) ⟩
+    m ⊔ n ∸ (m ⊔ n ∸ m ⊓ n) ≡⟨ m∸[m∸n]≡n (m⊓n≤m⊔n m n) ⟩
+    m ⊓ n                   ∎
+
+  ∣m-n∣+m⊓n≡m⊔n : ∀ m n → ∣ m - n ∣ + m ⊓ n ≡ m ⊔ n
+  ∣m-n∣+m⊓n≡m⊔n m n = begin-equality
+    ∣ m - n ∣ + m ⊓ n     ≡⟨ cong (_+ m ⊓ n) (∣m-n∣≡m⊔n∸m⊓n m n) ⟩
+    m ⊔ n ∸ m ⊓ n + m ⊓ n ≡⟨ m∸n+n≡m (m⊓n≤m⊔n m n) ⟩
+    m ⊔ n                 ∎
 
   m⊔n≡n∸m+m : ∀ m n → m ⊔ n ≡ n ∸ m + m
   m⊔n≡n∸m+m m n = trans (⊔-comm m n) (m⊔n≡m∸n+n n m)
-
-  -- NO -- already is: m⊔n∸[m∸n]≡n
-  n⊔m∸[m∸n]≡n : ∀ m n → n ⊔ m ∸ (m ∸ n) ≡ n
-  n⊔m∸[m∸n]≡n m n = begin-equality
-    n ⊔ m ∸ (m ∸ n) ≡⟨ cong (_∸ (m ∸ n)) (⊔-comm n m) ⟩
-    m ⊔ n ∸ (m ∸ n) ≡⟨ m⊔n∸[m∸n]≡n m n ⟩
-    n ∎
-
-  ∣m-n∣+m⊓n≡m⊔n : ∀ m n → ∣ m - n ∣ + m ⊓ n ≡ m ⊔ n
-  ∣m-n∣+m⊓n≡m⊔n m n with ≤-total m n
-  … | ⊎.inj₁ m≤n
-    rewrite m≤n⇒m⊔n≡n m≤n
-          | m≤n⇒m⊓n≡m m≤n
-          | m≤n⇒∣m-n∣≡n∸m m≤n
-          = m∸n+n≡m m≤n
-  … | ⊎.inj₂ n≤m
-    rewrite m≥n⇒m⊔n≡m n≤m
-          | m≥n⇒m⊓n≡n n≤m
-          | m≤n⇒∣n-m∣≡n∸m n≤m
-          = m∸n+n≡m n≤m
 
 module Fin where
   open import Data.Fin renaming (Fin to t)               public
