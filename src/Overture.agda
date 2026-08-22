@@ -35,7 +35,9 @@ open Rel₀ using (¬_; ¬?) public
 open Rel₁ using (Universal; IUniversal) public
 open Rel₂ using (_≡_; _≢_; Rel; cong; refl; trans; sym) public
 
-module 𝟚 where open import Data.Bool renaming (Bool to t) public
+module 𝟚 where
+  open import Data.Bool renaming (Bool to t) public
+  open import Data.Bool.Properties           public
 
 module × where
   open import Data.Product            public
@@ -111,6 +113,11 @@ module NonEmpty where
 
 module Vec where
   open import Data.Vec renaming (Vec to t) public
+  open import Data.Vec.Properties          public
+
+  module Rec where
+    open import Data.Vec.Recursive renaming (_^_ to t) public
+    open import Data.Vec.Recursive.Properties          public
 
 module Function where
   open import Function public
