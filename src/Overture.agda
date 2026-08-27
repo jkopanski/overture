@@ -118,6 +118,7 @@ module Vec where
   module Rec where
     open import Data.Vec.Recursive renaming (_^_ to t) public
     open import Data.Vec.Recursive.Properties          public
+    open import Data.Vec.Recursive.Properties.Extra    public
 
 module Function where
   open import Function public
